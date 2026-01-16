@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 
 // public folder ကို serve
-app.use(express.static("public"));
+app.use(express.static("Do"));
 
 // button press API
 app.post("/press", (req, res) => {
