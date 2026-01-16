@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Number Sender</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial;
+      margin-top: 40px;
+    }
+    button {
+      width: 60px;
+      height: 40px;
+      margin: 5px;
+      font-size: 16px;
+    }
+    #display {
+      font-size: 26px;
+      margin: 20px;
+      min-height: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Press Numbers</h2>
+
+<div id="display"></div>
+
+<div>
+  <button onclick="add('1')">1</button>
+  <button onclick="add('2')">2</button>
+  <button onclick="add('3')">3</button>
+  <button onclick="add('4')">4</button>
+  <button onclick="add('5')">5</button><br>
+  <button onclick="add('6')">6</button>
+  <button onclick="add('7')">7</button>
+  <button onclick="add('8')">8</button>
+  <button onclick="add('9')">9</button>
+  <button onclick="add('0')">0</button>
+</div>
+
+<br>
+
+<button onclick="send()">SEND</button>
+<button onclick="clearAll()">CLEAR</button>
+
+<p id="status"></p>
+
+<script src="script.js"></script>
+</body>
+</html>
