@@ -2,7 +2,7 @@ const buttonsContainer = document.getElementById("buttons-container");
 const output = document.getElementById("output");
 
 // စိတ်ကြိုက် key list (letter + number)
-const keys = ["A", "B", "C", "D", "E", "1", "2", "3", "4", "5"];
+const keys = ["A", "B", "C", "D", "E","F","G","H" ,"I", "J", "K" ,"L","M", "N","O","P","Q","R","S","T","U","V","W","X","Y","Z", "1", "2", "3", "4", "5"];
 
 // button generate
 keys.forEach((key) => {
@@ -20,3 +20,4 @@ keys.forEach((key) => {
   });
   buttonsContainer.appendChild(btn);
 });
+
