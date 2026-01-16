@@ -1,22 +1,18 @@
 const express = require("express");
-const cors = require("cors");
-
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
 
-app.post("/click", (req, res) => {
-  const { letter } = req.body;
-  console.log("User clicked:", letter);
-  res.json({ status: "ok", received: letter });
+app.post("/press", (req, res) => {
+  const { key } = req.body;
+
+  console.log("User pressed:", key); // 👈 Render log ထဲမှာပေါ်မယ်
+
+  res.json({ status: "ok", key });
 });
 
-app.get("/", (req, res) => {
-  res.send("Backend is running");
-});
-
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Server running on port", PORT);
 });
