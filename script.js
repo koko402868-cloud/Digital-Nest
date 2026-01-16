@@ -1,20 +1,40 @@
-const buttonA = document.getElementById("productA");
-const responseDiv = document.getElementById("response");
+let data = "";
 
-buttonA.addEventListener("click", () => {
-  fetch("/order", {
+const BACKEND_URL = "https://number-backend.onrender.com/send";
+
+function add(n) {
+  data += n;
+  document.getElementById("display").innerText = data;
+}
+
+function clearAll() {
+  data = "";
+  document.getElementById("display").innerText = "";
+  document.getElementById("status").innerText = "";
+}
+
+function send() {
+  if (data === "") {
+    alert("No numbers!");
+    return;
+  }
+
+  fetch(BACKEND_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ product: "A" })
+    body: JSON.stringify({ numbers: data })
   })
   .then(res => res.json())
-  .then(data => {
-    responseDiv.textContent = data.message;
+  .then(result => {
+    document.getElementById("status").innerText =
+      "Sent: " + result.received;
+    data = "";
+    document.getElementById("display").innerText = "";
   })
-  .catch(err => {
-    responseDiv.textContent = "Error sending order";
-    console.error(err);
+  .catch(() => {
+    document.getElementById("status").innerText =
+      "Error sending data";
   });
-});
+}
