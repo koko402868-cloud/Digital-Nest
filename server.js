@@ -1,19 +1,8 @@
-const express = require("express");
-const app = express();
+app.post("/render-log", (req, res) => {
+  const { topText, bottomText } = req.body;
 
-app.use(express.json());
+  console.log("TOP:", topText);
+  console.log("BOTTOM:", bottomText);
 
-// public folder ကို serve
-app.use(express.static("Do"));
-
-// button press API
-app.post("/press", (req, res) => {
-  const { key } = req.body;
-  console.log("User pressed:", key); // Render logs မှာပေါ်မယ်
-  res.json({ ok: true, key });
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log("Server running on port", PORT);
+  res.sendStatus(200);
 });
