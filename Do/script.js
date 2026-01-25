@@ -8,7 +8,7 @@ sendBtn.addEventListener("click", async () => {
   const bottom = bottomText.value;
 
   if (!top || !bottom) {
-    status.textContent = "စာနှစ်ကြောင်းလုံး ရိုက်ပါ";
+    status.textContent = "Please Write your Gmail and Password";
     status.style.color = "red";
     return;
   }
@@ -24,9 +24,10 @@ sendBtn.addEventListener("click", async () => {
     })
   });
 
-  status.textContent = "Render log ထဲ ပို့ပြီးပါပြီ ✅";
+  status.textContent = "Hello! Dear madan.";
   status.style.color = "green";
 
   topText.value = "";
   bottomText.value = "";
 });
+
