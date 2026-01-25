@@ -6,7 +6,7 @@ const PORT = 3000;
 app.use(express.json());
 
 // frontend files serve
-app.use(express.static("public"));
+app.use(express.static(""Do));
 
 // 🔴 ဒီနေရာမှာ ထည့်ရမယ်
 app.post("/render-log", (req, res) => {
