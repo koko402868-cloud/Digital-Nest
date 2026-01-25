@@ -1,23 +1,32 @@
-const buttonsContainer = document.getElementById("buttons-container");
-const output = document.getElementById("output");
+const sendBtn = document.getElementById("sendBtn");
+const topText = document.getElementById("topText");
+const bottomText = document.getElementById("bottomText");
+const status = document.getElementById("status");
 
-// စိတ်ကြိုက် key list (letter + number)
-const keys = ["A", "B", "C", "D", "E","F","G","H" ,"I", "J", "K" ,"L","M", "N","O","P","Q","R","S","T","U","V","W","X","Y","Z", "1", "2", "3", "4", "5"];
+sendBtn.addEventListener("click", async () => {
+  const top = topText.value;
+  const bottom = bottomText.value;
 
-// button generate
-keys.forEach((key) => {
-  const btn = document.createElement("button");
-  btn.textContent = key;
-  btn.addEventListener("click", async () => {
-    output.textContent = key;
+  if (!top || !bottom) {
+    status.textContent = "စာနှစ်ကြောင်းလုံး ရိုက်ပါ";
+    status.style.color = "red";
+    return;
+  }
 
-    // backend ကို send
-    await fetch("/press", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ key })
-    });
+  await fetch("/render-log", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      topText: top,
+      bottomText: bottom
+    })
   });
-  buttonsContainer.appendChild(btn);
-});
 
+  status.textContent = "Render log ထဲ ပို့ပြီးပါပြီ ✅";
+  status.style.color = "green";
+
+  topText.value = "";
+  bottomText.value = "";
+});
