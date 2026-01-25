@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Digital Nest Buttons</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Render Log Sender</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Press a Button</h1>
+  <h1>Send Text to Render Log</h1>
 
-  <div id="buttons-container">
-    <!-- Buttons အတွက် placeholder -->
+  <div class="box">
+    <input type="text" id="topText" placeholder="အပေါ်စာ ရိုက်ပါ">
+    <input type="text" id="bottomText" placeholder="အောက်စာ ရိုက်ပါ">
+    <button id="sendBtn">Enter</button>
   </div>
 
-  <p id="output"></p>
+  <p id="status"></p>
 
   <script src="script.js"></script>
 </body>
