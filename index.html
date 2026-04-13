@@ -55,6 +55,15 @@
     /* Brand & Logo */
     .brand {
       display: flex;
+      justify-content: space-between; /* Pushes logo left, cart right within brand */
+      align-items: center;
+      gap: 10px;
+      flex-grow: 1; /* Allows brand to take available space */
+    }
+
+    /* Group for Logo and Text to keep them together */
+    .brand-info {
+      display: flex;
       align-items: center;
       gap: 10px;
       text-decoration: none;
@@ -77,7 +86,7 @@
       .brand-text { display: block; }
     }
 
-    /* Header Actions (Social + Cart) */
+    /* Header Actions (Now contains only Social) */
     .header-actions {
       display: flex;
       gap: 10px;
@@ -543,11 +552,22 @@
   
   <!-- Top Navigation Bar -->
   <div class="top-navbar">
+    
+    <!-- Brand Section: Now contains Logo, Text AND Cart -->
     <div class="brand">
-      <img src="images/logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
-      <span class="brand-text">Digital Nest</span>
+        <!-- Group for Logo and Text -->
+        <div class="brand-info">
+            <img src="images/logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+            <span class="brand-text">Digital Nest</span>
+        </div>
+
+        <!-- Cart Button Moved Here -->
+        <button class="cart-btn" onclick="openCart()">
+            <span>🛒</span> <span id="cartCount">0</span>
+        </button>
     </div>
     
+    <!-- Header Actions: Now contains only Social Icons -->
     <div class="header-actions">
       <div class="social-icons">
         <button class="social-btn" onclick="openSocial('fb')">
@@ -558,15 +578,11 @@
             <img src="images/viber.png" class="social-icon-img" alt="Viber" onerror="this.style.display='none'">
             <span class="social-text">Viber</span>
         </button>
-        <button class="social-btn" onclick="openSocial('tg')">
+        <button class="social-btn" onclick="openSocial('tg')" >
             <img src="images/telegram.png" class="social-icon-img" alt="TG" onerror="this.style.display='none'">
             <span class="social-text">Telegram</span>
         </button>
       </div>
-
-      <button class="cart-btn" onclick="openCart()">
-        <span>🛒</span> <span id="cartCount">0</span>
-      </button>
     </div>
   </div>
 
@@ -574,7 +590,6 @@
   <div class="welcome-banner">
     <h1>မင်္ဂလာပါခင်ဗျား။ မိမိလိုချင်သောပစ္စည်းများကို Cart ထဲသို့ ထည့်ပြီး QR code ပြောင်းကာ Facebook Page messenger / Viber/ Telegram များတွင် QR code ပို့ ၍မှာယူနိုင်ပါသည်။ Website များတွင် ငွေပေးချေခြင်းက Customer များအတွက် ရှုပ်ထွေးနေမည်စိုး၍ အလွယ်ကူဆုံးနည်းဖြစ်စေရန် ပြုလုပ်ထားခြင်းဖြစ်ပါသည်။ ကျေးဇူးတင်ပါသည်ခင်ဗျား။🙏🙏🙏</h1>
   </div>
-
   <div class="container">
     
     <!-- Controls -->
@@ -1108,10 +1123,8 @@
         qrBoxes.forEach((img, index) => {
             const col = index % cols;
             const row = Math.floor(index / cols);
-            
             const x = padding + border + (col * (qrSize + padding));
             const y = padding + border + (row * (qrSize + headerHeight + padding));
-
             ctx.fillStyle = "#000000";
             ctx.font = "bold 16px Arial";
             ctx.textAlign = "center";
@@ -1143,7 +1156,6 @@
         link.click();
         document.body.removeChild(link);
     }
-
     function openSocial(platform) {
       const links = {
         'fb': 'https://www.facebook.com/YOUR_PAGE_NAME',   
