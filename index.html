@@ -34,7 +34,6 @@
 
     /* --- HEADER & NAVIGATION RESPONSIVE DESIGN --- */
  
-   
     
     /* Top Navbar: Logo, Social, Cart */
     .top-navbar {
@@ -590,6 +589,7 @@
   <div class="welcome-banner">
     <h1>မင်္ဂလာပါခင်ဗျား။ မိမိလိုချင်သောပစ္စည်းများကို Cart ထဲသို့ ထည့်ပြီး QR code ပြောင်းကာ Facebook Page messenger / Viber/ Telegram များတွင် QR code ပို့ ၍မှာယူနိုင်ပါသည်။ Website များတွင် ငွေပေးချေခြင်းက Customer များအတွက် ရှုပ်ထွေးနေမည်စိုး၍ အလွယ်ကူဆုံးနည်းဖြစ်စေရန် ပြုလုပ်ထားခြင်းဖြစ်ပါသည်။ ကျေးဇူးတင်ပါသည်ခင်ဗျား။🙏🙏🙏</h1>
   </div>
+
   <div class="container">
     
     <!-- Controls -->
@@ -648,7 +648,8 @@
             <p style="margin-bottom:15px; text-align:center; font-size:0.9rem; color:var(--gray);">QR code များကို Download ရန် အောက်က Button ကိုနှိပ်ပါ။</p>
             <div id="qrGrid" class="qr-grid"></div>
             <br>
-            <button class="cart-btn" style="width:100%; justify-content:center;" onclick="downloadCombinedQR()">Download QR Image (All)</button>
+            <!-- ဒီမှာ Function အသစ်ကို ခေါ်သုံးထားပါတယ် -->
+            <button class="cart-btn" style="width:100%; justify-content:center;" onclick="downloadQR_Fixed()">Download QR Image (All)</button>
         </div>
       </div>
     </div>
@@ -686,6 +687,7 @@
       { id: 19, name: "9V battery socket", price: 400, image: "images/9V battery socket.png", category: "Power", description: "သင့်ရဲ့ Circuit မှာ Battery ကို အဖြုတ်အတပ်လွယ်ကူစေမှာဖြစ်ပြီး Battery ပျက်စိးသွားပါကလွယ်ကူစွာလှဲနိုင်အောင် အသုံးပြလို့ရမဲ့ Battery Socket လေးပါ။", stock: 5 },
       { id: 20, name: "9V Battery Clip with barrel jack", price: 400, image: "images/9V-Battery-Clip-with-barrel-jack.png", category: "Power", description: "အသုံးပြုရလွယ်ကူပြီးတပ် ဆင်ရအဆင်ပြေစေမဲ့ Battery Clip with barrel jack လေးဖြစ်ပါတယ်။", stock: 5 }
       
+      // ဒီနေရာမှာ သင့်ရဲ့ ပစ္စည်းအချက်အလက်တွေ ထပ်ထည့်နိုင်ပါတယ်
     ];
 
     /* STATE */
@@ -1088,74 +1090,134 @@
       document.getElementById("qrSection").style.display = "flex";
     }
 
-    function downloadCombinedQR() {
-        const qrBoxes = document.querySelectorAll('.qr-box img');
-        if (qrBoxes.length === 0) {
+    /* -----------------------------------------------------------
+       NEW FUNCTIONS FOR MOBILE DOWNLOAD FIX
+       ----------------------------------------------------------- */
+    
+    // ဒီဟာက အသစ်ထည့်ထားတဲ့ Function ဖြစ်ပါတယ်
+    function downloadQR_Fixed() {
+        const qrContainers = document.querySelectorAll('.qr-box');
+        if (qrContainers.length === 0) {
             alert("Please generate QR codes first.");
             return;
         }
 
+        // Canvas အသစ်တစ်ခု ဖန်တီးပါမယ်
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
+        
+        // Layout Settings
         const padding = 20;
         const border = 10; 
         const headerHeight = 40;
         const qrSize = 180;
         
-        const cols = qrBoxes.length > 1 ? 2 : 1;
-        const rows = Math.ceil(qrBoxes.length / cols);
+        const cols = qrContainers.length > 1 ? 2 : 1;
+        const rows = Math.ceil(qrContainers.length / cols);
         
+        // Canvas Size တွက်ချက်ခြင်း
         const totalWidth = (qrSize * cols) + (padding * (cols + 1)) + (border * 2);
         const totalHeight = (qrSize * rows) + (headerHeight * rows) + (padding * (rows + 1)) + (border * 2);
 
         canvas.width = totalWidth;
         canvas.height = totalHeight;
 
+        // နောက်ခံဖြူရောင်
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+        // အနက်ရောင်နယ်နိမိတ်
         ctx.strokeStyle = "#000000";
         ctx.lineWidth = 8;
         ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
         let loadedImages = 0;
+        const totalToLoad = qrContainers.length;
         
-        qrBoxes.forEach((img, index) => {
+        qrContainers.forEach((box, index) => {
             const col = index % cols;
             const row = Math.floor(index / cols);
+            
+            // တစ်ခုချင်းစီရဲ့ နေရာချိန်ညှိခြင်း
             const x = padding + border + (col * (qrSize + padding));
             const y = padding + border + (row * (qrSize + headerHeight + padding));
+
+            // Header Text ရေးသားခြင်း
             ctx.fillStyle = "#000000";
             ctx.font = "bold 16px Arial";
             ctx.textAlign = "center";
             ctx.fillText(`DIGITAL NEST - PART ${index + 1}`, x + qrSize/2, y + 20);
 
+            // လိုင်းဆွဲခြင်း
             ctx.beginPath();
             ctx.moveTo(x, y + 30);
             ctx.lineTo(x + qrSize, y + 30);
             ctx.lineWidth = 3;
             ctx.stroke();
 
-            const tempImg = new Image();
-            tempImg.src = img.src; 
-            tempImg.onload = function() {
-                ctx.drawImage(tempImg, x, y + 35, qrSize, qrSize);
-                
+            // QR Code ရှာဖွေခြင်း (Img ရှိရင် Img၊ မရှိရင် Canvas ကို ယူသုံးမယ်)
+            let imgSource = '';
+            const img = box.querySelector('img');
+            const canvasEl = box.querySelector('canvas');
+
+            if (img && img.src) {
+                imgSource = img.src;
+            } else if (canvasEl) {
+                imgSource = canvasEl.toDataURL();
+            }
+
+            if (imgSource) {
+                const tempImg = new Image();
+                tempImg.onload = function() {
+                    // Canvas ပေါ်မှာ QR ကို ဆွဲတင်ခြင်း
+                    ctx.drawImage(tempImg, x, y + 35, qrSize, qrSize);
+                    
+                    loadedImages++;
+                    // အားလုံးပြီးရင် Download လုပ်ပေးမယ်
+                    if(loadedImages === totalToLoad) {
+                        triggerMobileDownload(canvas);
+                    }
+                };
+                // အမှားပါလာရင် ကြည့်ရန်
+                tempImg.onerror = function() {
+                    loadedImages++;
+                    if(loadedImages === totalToLoad) triggerMobileDownload(canvas);
+                };
+                tempImg.src = imgSource;
+            } else {
+                // ပုံမရှိဘဲ နေရင် ဆက်လက်လုပ်ဆောင်
                 loadedImages++;
-                if(loadedImages === qrBoxes.length) {
-                    triggerDownload(canvas);
-                }
-            };
+                if(loadedImages === totalToLoad) triggerMobileDownload(canvas);
+            }
         });
     }
-    function triggerDownload(canvas) {
-        const link = document.createElement('a');
-        link.download = 'DigitalNest_Order.png';
-        link.href = canvas.toDataURL('image/png');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+
+    // Mobile မှာ Download လုပ်တဲ့ Function
+    function triggerMobileDownload(canvas) {
+        try {
+            const dataUrl = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = 'DigitalNest_Order.png';
+            link.href = dataUrl;
+            
+            // Mobile အတွက် အရေးကြီးဆုံး Step (ဒီဟာကြောင့် မရခဲ့တာ)
+            document.body.appendChild(link);
+            link.click();
+            
+            // Link ကို ဖျက်ပစ်ခြင်း
+            setTimeout(() => {
+                document.body.removeChild(link);
+            }, 100);
+        } catch (e) {
+            console.error(e);
+            alert("Download failed. Please take a screenshot.");
+        }
     }
+
+    /* -----------------------------------------------------------
+       END NEW FUNCTIONS
+       ----------------------------------------------------------- */
+
     function openSocial(platform) {
       const links = {
         'fb': 'https://www.facebook.com/YOUR_PAGE_NAME',   
