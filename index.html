@@ -34,7 +34,6 @@
 
     /* --- HEADER & NAVIGATION RESPONSIVE DESIGN --- */
  
-    
     /* Top Navbar: Logo, Social, Cart */
     .top-navbar {
       background: var(--dark);
@@ -468,6 +467,27 @@
       font-size: 0.9rem;
     }
 
+    /* --- NEW: Delete Button Style --- */
+    .delete-btn {
+      background: #fff0f0;
+      border: 1px solid var(--danger);
+      color: var(--danger);
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 5px;
+      transition: all 0.2s;
+    }
+    .delete-btn:hover {
+      background: var(--danger);
+      color: white;
+    }
+
     .cart-total {
       margin-top: 20px;
       text-align: right;
@@ -648,7 +668,6 @@
             <p style="margin-bottom:15px; text-align:center; font-size:0.9rem; color:var(--gray);">QR code များကို Download ရန် အောက်က Button ကိုနှိပ်ပါ။</p>
             <div id="qrGrid" class="qr-grid"></div>
             <br>
-            <!-- ဒီမှာ Function အသစ်ကို ခေါ်သုံးထားပါတယ် -->
             <button class="cart-btn" style="width:100%; justify-content:center;" onclick="downloadQR_Fixed()">Download QR Image (All)</button>
         </div>
       </div>
@@ -998,6 +1017,11 @@
                   <span class="qty-val">${qty}</span>
                   <button class="qty-btn" onclick="updateQty(${id}, 1)">+</button>
                 </div>
+                
+                <!-- DELETE BUTTON ADDED HERE -->
+                <button class="delete-btn" onclick="removeFromCart(${id})" title="Remove Item">
+                    🗑️
+                </button>
               </div>
             </div>
           `;
@@ -1094,7 +1118,6 @@
        NEW FUNCTIONS FOR MOBILE DOWNLOAD FIX
        ----------------------------------------------------------- */
     
-    // ဒီဟာက အသစ်ထည့်ထားတဲ့ Function ဖြစ်ပါတယ်
     function downloadQR_Fixed() {
         const qrContainers = document.querySelectorAll('.qr-box');
         if (qrContainers.length === 0) {
@@ -1102,11 +1125,9 @@
             return;
         }
 
-        // Canvas အသစ်တစ်ခု ဖန်တီးပါမယ်
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         
-        // Layout Settings
         const padding = 20;
         const border = 10; 
         const headerHeight = 40;
@@ -1115,18 +1136,15 @@
         const cols = qrContainers.length > 1 ? 2 : 1;
         const rows = Math.ceil(qrContainers.length / cols);
         
-        // Canvas Size တွက်ချက်ခြင်း
         const totalWidth = (qrSize * cols) + (padding * (cols + 1)) + (border * 2);
         const totalHeight = (qrSize * rows) + (headerHeight * rows) + (padding * (rows + 1)) + (border * 2);
 
         canvas.width = totalWidth;
         canvas.height = totalHeight;
 
-        // နောက်ခံဖြူရောင်
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // အနက်ရောင်နယ်နိမိတ်
         ctx.strokeStyle = "#000000";
         ctx.lineWidth = 8;
         ctx.strokeRect(0, 0, canvas.width, canvas.height);
@@ -1138,24 +1156,20 @@
             const col = index % cols;
             const row = Math.floor(index / cols);
             
-            // တစ်ခုချင်းစီရဲ့ နေရာချိန်ညှိခြင်း
             const x = padding + border + (col * (qrSize + padding));
             const y = padding + border + (row * (qrSize + headerHeight + padding));
 
-            // Header Text ရေးသားခြင်း
             ctx.fillStyle = "#000000";
             ctx.font = "bold 16px Arial";
             ctx.textAlign = "center";
             ctx.fillText(`DIGITAL NEST - PART ${index + 1}`, x + qrSize/2, y + 20);
 
-            // လိုင်းဆွဲခြင်း
             ctx.beginPath();
             ctx.moveTo(x, y + 30);
             ctx.lineTo(x + qrSize, y + 30);
             ctx.lineWidth = 3;
             ctx.stroke();
 
-            // QR Code ရှာဖွေခြင်း (Img ရှိရင် Img၊ မရှိရင် Canvas ကို ယူသုံးမယ်)
             let imgSource = '';
             const img = box.querySelector('img');
             const canvasEl = box.querySelector('canvas');
@@ -1169,42 +1183,32 @@
             if (imgSource) {
                 const tempImg = new Image();
                 tempImg.onload = function() {
-                    // Canvas ပေါ်မှာ QR ကို ဆွဲတင်ခြင်း
                     ctx.drawImage(tempImg, x, y + 35, qrSize, qrSize);
-                    
                     loadedImages++;
-                    // အားလုံးပြီးရင် Download လုပ်ပေးမယ်
                     if(loadedImages === totalToLoad) {
                         triggerMobileDownload(canvas);
                     }
                 };
-                // အမှားပါလာရင် ကြည့်ရန်
                 tempImg.onerror = function() {
                     loadedImages++;
                     if(loadedImages === totalToLoad) triggerMobileDownload(canvas);
                 };
                 tempImg.src = imgSource;
             } else {
-                // ပုံမရှိဘဲ နေရင် ဆက်လက်လုပ်ဆောင်
                 loadedImages++;
                 if(loadedImages === totalToLoad) triggerMobileDownload(canvas);
             }
         });
     }
 
-    // Mobile မှာ Download လုပ်တဲ့ Function
     function triggerMobileDownload(canvas) {
         try {
             const dataUrl = canvas.toDataURL('image/png');
             const link = document.createElement('a');
             link.download = 'DigitalNest_Order.png';
             link.href = dataUrl;
-            
-            // Mobile အတွက် အရေးကြီးဆုံး Step (ဒီဟာကြောင့် မရခဲ့တာ)
             document.body.appendChild(link);
             link.click();
-            
-            // Link ကို ဖျက်ပစ်ခြင်း
             setTimeout(() => {
                 document.body.removeChild(link);
             }, 100);
@@ -1222,7 +1226,7 @@
       const links = {
         'fb': 'https://www.facebook.com/YOUR_PAGE_NAME',   
         'viber': 'https://invite.viber.com/?g2=AQB28DLZEX16elZh7XUvtS2oC7PmFdVpGuwjs1GG8J0LjpxuL8PKCROkW7g1kVXd',    
-        'tg': 'https://t.me/electronic1256'        
+        'tg': 'https://t.me/kyatmallmyanmar8'        
  };
       if (links[platform]) {
         window.open(links[platform], '_blank');
