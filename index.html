@@ -66,11 +66,12 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     
-    body {
-      background-color: var(--light);
-      color: var(--dark);
-      padding-bottom: 80px;
-    }
+   /* ယခင် body ပုံစံဟောင်းနေရာတွင် အစားထိုးရန် */
+body {
+  background-color: var(--light);
+  color: var(--dark);
+  padding-bottom: 0px; /* 80px ကနေ 0px ပြောင်းပေးပါ */
+}
 
     /* --- HEADER & NAVIGATION RESPONSIVE DESIGN --- */
  
@@ -599,6 +600,93 @@
       display: none;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
+    
+    /* =====================
+   FOOTER STYLES (NEW)
+   ===================== */
+.site-footer {
+  background-color: #0f172a; /* var(--dark) အမှောင်ရောင် */
+  color: #cbd5e1;
+  padding: 40px 20px 20px 20px;
+  margin-top: 60px;
+  border-top: 3px solid var(--accent);
+}
+
+.footer-container {
+  max-width: 1250px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+/* Screen ကျယ်ရင် ကော်လံ ၃ ခု ဖြန့်ခင်းရန် */
+@media (min-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1.5fr 1fr 1fr;
+  }
+}
+
+.footer-column h4 {
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  border-bottom: 2px solid rgba(6, 182, 212, 0.2); /* var(--accent) အဖျော့ */
+  padding-bottom: 8px;
+}
+
+.footer-logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.footer-logo {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-column h3 {
+  color: var(--accent);
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.footer-slogan {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #94a3b8;
+}
+
+.footer-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.footer-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  max-width: 1250px;
+  margin: 30px auto 0 auto;
+  padding-top: 20px;
+  border-top: 1px solid #334155;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #64748b;
+}
 
   </style>
 </head>
@@ -635,7 +723,7 @@
   </div>
 
   <div class="welcome-banner">
-    <h1>မင်္ဂလာပါခင်ဗျား။ မိမိလိုချင်သောပစ္စည်းများကို ဝယ်ယူလိုပါ က Buy ကို နိပ်ပါ။ Order တင်လိုပါ က 🛒 👈 ဒီဟာကိုနိပ်ပါ။ပြီးလျှင် Generate QR Order ကိုနိပ်ပါ။ ရလာသော QR Code ကို Download ဆွဲ၍ Page Messanger တွင်ပို့ ကာ Order တင်နိုင်ပါသည်။ Myeik မြို့တွင်း🛴 In 24 Hours Deli ဖြင့် ပို့ ဆောင်ပေးပြီး ကျန် မြို့များကိုတော့ ငွေလွဲရလျှင် 🚐 ကားဂိတ်သို့ ပို့ပေးပါသည်ခင်ဗျား။ 🙏🙏🙏 ဝယ်ယူအားပေးသူ Customers တစ်ယောက် ချင်းစီတိုင်းအထူးကျေးဇူးတင်ရှိပါသည်ခင်ဗျား။ </h1>
+    <h1>မင်္ဂလာပါခင်ဗျား။ မိမိလိုချင်သောပစ္စည်းများကို ဝယ်ယူလိုပါ က Buy ကို နိပ်ပါ။ Order တင်လိုပါ က 🛒 👈 ဒီဟာကိုနိပ်ပါ။ပြီးလျှင် Generate QR Order ကိုနိပ်ပါ။ ရလာသော QR Code ကို Download ဆွဲ၍ Page Messanger တွင်ပို့ ကာ Order တင်နိုင်ပါသည်။👨‍💻👨‍💼 ဝယ်ယူအားပေးသူ Customers တစ်ယောက် ချင်းစီတိုင်းအထူးကျေးဇူးတင်ရှိပါသည်ခင်ဗျား။🙏 </h1>
   </div>
 
   <div class="container">
@@ -694,6 +782,40 @@
     </div>
   </div>
 
+  <!-- =====================
+       FOOTER SECTION (NEW)
+  ===================== -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <!-- ဆိုင်အချက်အလက် ကော်လံ -->
+      <div class="footer-column brand-col">
+        <div class="footer-logo-wrapper">
+          <img src="images/logo.png" alt="Digital Nest Logo" class="footer-logo" onerror="this.style.display='none'">
+          <h3>Digital Nest</h3>
+        </div>
+        <p class="footer-slogan">Electronics Shop Pro - သင့်စိတ်ကြိုက် Electronics ပစ္စည်းများနှင့် DIY Component များကို တစ်နေရာတည်းတွင် စုံလင်စွာ ဝယ်ယူရရှိနိုင်ပါသည်။ ပစ္စည်းများကို ဖွင့်ဖောက်စမ်းပြီးမှ Customer များထံသို့ပို့ဆောင်ပေးခြင်းကြောင့် ပစ္စည်း Error များပါဝင်နေမည်ကိုစိုးရိမ်စရာမလိုဘဲ ယုံကြည်စိတ်ချစွာမှာယူနိုင်ပါသည်ခင်ဗျား။</p>
+      </div>
+
+      <!-- ဆိုင်လိပ်စာ ကော်လံ -->
+      <div class="footer-column">
+        <h4>📍 ဆိုင်လိပ်စာ (Address)</h4>
+        <p class="footer-text">မြိတ်မြို့နယ် ၊ချောင်းကူးငယ်ရပ်၊ တနင်္သာရီတိုင်းဒေသကြီး။</p>
+        <p class="footer-text" style="font-size: 0.85rem; color: var(--gray); margin-top: 5px;">(မြိတ်မြို့တွင်း 🛴 In 24 Hours အိမ်ရောက်‌ငွေချေစနစ်ဖြင့် ပို့ဆောင်ပေးပြီး၊ ကျန်မြို့များကို ငွေလွဲရသည်နှင့် ကားဂိတ်သို့ ပို့ဆောင်ပေးပါသည်ခင်ဗျား)</p>
+      </div>
+
+      <!-- ဆက်သွယ်ရန် ကော်လံ -->
+      <div class="footer-column">
+        <h4>📞 ဆက်သွယ်ရန် (Contact)</h4>
+        <p class="footer-text"><strong>Phone:</strong> <a href="tel:09402868817" class="footer-link">09-402868817</a>, <a href="tel:09697932369" class="footer-link">09-697932369</a></p>
+        <p class="footer-text"><strong>Socials:</strong> အပေါ်ရှိ Facebook, Viber, Telegram  များမှတစ်ဆင့်လည်း တိုက်ရိုက် ဆက်သွယ်မှာယူနိုင်ပါသည်။</p>
+      </div>
+    </div>
+
+    <!-- Copyright အပိုင်း -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 Digital Nest. All Rights Reserved. Powered by Electronics Shop Pro.</p>
+    </div>
+  </footer>
   <div id="toast">Item added to cart</div>
 
   <script>
@@ -1482,6 +1604,8 @@
         event.target.classList.remove("active");
       }
     }
+    
+   
   </script>
 </body>
 </html>
