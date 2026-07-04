@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Digital Nest - Electronics Shop Pro</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
+  
   <style>
-    /* CSS Section ရဲ့ အောက်ဆုံးနားမှာ ဒါလေး ထည့်ပေးပါ */
 .custom-select-wrapper {
   position: relative;
   width: 100%;
   margin: 5px 0;
-  height: 35px; /* ပုံမှန်အမြင့် ချန်ထားရန် */
+  height: 35px;
 }
 
 .custom-scroll-select {
@@ -25,18 +24,16 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 50; /* List ပွင့်လာရင် အောက်ကစာတွေကို ဖုံးပြီး ပေါ်လာစေရန် */
+  z-index: 50;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   transition: all 0.2s ease;
 }
 
-/* List အောက်ကို ပွင့်လာတဲ့အခါ ဖြစ်မယ့် ပုံစံ */
 .custom-scroll-select:focus {
   border-color: var(--primary);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-/* Scrollbar ကို ပိုပြီး သေးသေးသွယ်သွယ် လှလှလေး ဖြစ်အောင် လုပ်တာပါ */
 .custom-scroll-select::-webkit-scrollbar {
   width: 6px;
 }
@@ -51,7 +48,7 @@
 .custom-scroll-select::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
 }
-    /* Global Reset & Variables */
+    
     :root {
       --primary: #2563eb;
       --primary-dark: #1e40af;
@@ -66,16 +63,12 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     
-   /* ယခင် body ပုံစံဟောင်းနေရာတွင် အစားထိုးရန် */
 body {
   background-color: var(--light);
   color: var(--dark);
-  padding-bottom: 0px; /* 80px ကနေ 0px ပြောင်းပေးပါ */
+  padding-bottom: 0px;
 }
 
-    /* --- HEADER & NAVIGATION RESPONSIVE DESIGN --- */
- 
-    /* Top Navbar: Logo, Social, Cart */
     .top-navbar {
       background: var(--dark);
       color: white;
@@ -91,16 +84,14 @@ body {
       gap: 15px;
     }
 
-    /* Brand & Logo */
     .brand {
       display: flex;
-      justify-content: space-between; /* Pushes logo left, cart right within brand */
+      justify-content: space-between;
       align-items: center;
       gap: 10px;
-      flex-grow: 1; /* Allows brand to take available space */
+      flex-grow: 1;
     }
 
-    /* Group for Logo and Text to keep them together */
     .brand-info {
       display: flex;
       align-items: center;
@@ -125,14 +116,12 @@ body {
       .brand-text { display: block; }
     }
 
-    /* Header Actions (Now contains only Social) */
     .header-actions {
       display: flex;
       gap: 10px;
       align-items: center;
     }
 
-    /* Social Buttons */
     .social-icons {
       display: flex;
       gap: 5px;
@@ -178,7 +167,6 @@ body {
         .social-text { font-size: 0.9rem; }
     }
 
-    /* Cart Button */
     .cart-btn {
       background: var(--primary);
       color: white;
@@ -195,7 +183,6 @@ body {
     }
     .cart-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
 
-    /* --- WELCOME BANNER --- */
     .welcome-banner {
       background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
       color: #e2e8f0;
@@ -220,14 +207,12 @@ body {
         100% { background-position: 100% 50%; }
     }
 
-    /* --- MAIN CONTAINER --- */
     .container {
       max-width: 1250px;
       margin: 25px auto;
       padding: 0 20px;
     }
 
-    /* Controls */
     .controls {
       display: flex;
       flex-wrap: wrap;
@@ -241,7 +226,6 @@ body {
       box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     }
 
-    /* Category Buttons (Top Filter Bar) */
     .category-filters {
       display: flex;
       gap: 8px;
@@ -265,7 +249,6 @@ body {
       border-color: var(--primary);
     }
 
-    /* Search Bar */
     #searchInput {
       padding: 10px 15px;
       border: 1px solid var(--border);
@@ -276,16 +259,12 @@ body {
     }
     #searchInput:focus { border-color: var(--primary); }
 
-    /* --- PRODUCT DISPLAY AREA (UPDATED LOGIC) --- */
-    
-    /* Main Container: Can be Flex (Sections) or Grid (Filtered) */
     #products {
       display: flex;
       flex-direction: column;
-      gap: 50px; /* Space between categories */
+      gap: 50px;
     }
 
-    /* When filtering/searching, switch to single grid layout */
     #products.is-filtered {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -296,7 +275,6 @@ body {
         #products.is-filtered { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
     }
 
-    /* Individual Category Section */
     .category-section {
       background: transparent;
     }
@@ -329,7 +307,6 @@ body {
     }
     .view-more-btn:hover { background: var(--accent); }
 
-    /* Inner Grid for Category Items */
     .cat-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -340,7 +317,6 @@ body {
         .cat-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
     }
 
-    /* Back to Home Button (Hidden by default) */
     #backToHomeBtn {
       display: none;
       background: var(--accent);
@@ -353,7 +329,6 @@ body {
       font-weight: bold;
     }
 
-    /* Product Card (Styles preserved) */
     .card {
       background: white;
       border-radius: 12px;
@@ -367,7 +342,6 @@ body {
     }
     .card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 
-    /* NEW: RGB Border Effect for Discount Items */
     .card.discount-glow {
       border: 1px solid transparent;
       position: relative;
@@ -390,7 +364,6 @@ body {
       100% { background-position: 0% 50%; }
     }
 
-    /* NEW: RGB Star Discount Badge */
     .rgb-star-badge {
       position: absolute;
       top: -8px;
@@ -448,8 +421,16 @@ body {
     }
 
     .card-body { padding: 12px; flex: 1; display: flex; flex-direction: column; }
-    .card h3 { font-size: 0.95rem; margin-bottom: 8px; height: 40px; overflow: hidden; line-height: 1.3; }
+    .card h3 { font-size: 0.95rem; margin-bottom: 4px; height: 40px; overflow: hidden; line-height: 1.3; }
     
+    /* SKU Text Style */
+    .sku-text {
+      font-size: 0.8rem;
+      color: var(--success);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
     .price-row {
       display: flex;
       justify-content: space-between;
@@ -457,7 +438,6 @@ body {
       margin-top: auto;
     }
 
-    /* NEW: Prices Layout Styles */
     .price-container {
       display: flex;
       flex-direction: column;
@@ -471,7 +451,7 @@ body {
     }
     .price { color: var(--primary); font-weight: bold; font-size: 1rem; }
     .price.discount-blue {
-      color: #2563eb !important; /* အပြာရောင်သီးသန့်ပြောင်းလဲခြင်း */
+      color: #2563eb !important;
     }
     
     .add-btn {
@@ -500,7 +480,6 @@ body {
     .badge.out { background: var(--danger); }
     .badge.low { background: orange; }
 
-    /* Modals (Preserved) */
     .modal {
       position: fixed;
       inset: 0;
@@ -551,7 +530,6 @@ body {
       color: var(--gray);
     }
 
-    /* Cart Items */
     .cart-item {
       display: flex;
       justify-content: space-between;
@@ -588,7 +566,6 @@ body {
       font-size: 0.9rem;
     }
 
-    /* --- NEW: Delete Button Style --- */
     .delete-btn {
       background: #fff0f0;
       border: 1px solid var(--danger);
@@ -626,8 +603,7 @@ body {
       flex-wrap: wrap;
     }
 
-    /* QR Code Container */
-    .qrcode-wrapper {
+    .qrcode-wrapper, .voucher-wrapper {
       margin-top: 20px;
       display: flex;
       flex-direction: column;
@@ -635,6 +611,7 @@ body {
       background: #fff;
       padding: 15px;
       border-radius: 8px;
+      border: 1px solid var(--border);
     }
 
     .qr-grid {
@@ -666,7 +643,6 @@ body {
       font-size: 0.9rem;
     }
 
-    /* Toast */
     #toast {
       position: fixed;
       bottom: 30px;
@@ -681,11 +657,8 @@ body {
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
     
-    /* =====================
-   FOOTER STYLES (NEW)
-   ===================== */
 .site-footer {
-  background-color: #0f172a; /* var(--dark) အမှောင်ရောင် */
+  background-color: #0f172a; 
   color: #cbd5e1;
   padding: 40px 20px 20px 20px;
   margin-top: 60px;
@@ -700,7 +673,6 @@ body {
   gap: 30px;
 }
 
-/* Screen ကျယ်ရင် ကော်လံ ၃ ခု ဖြန့်ခင်းရန် */
 @media (min-width: 768px) {
   .footer-container {
     grid-template-columns: 1.5fr 1fr 1fr;
@@ -711,7 +683,7 @@ body {
   color: white;
   font-size: 1.1rem;
   margin-bottom: 15px;
-  border-bottom: 2px solid rgba(6, 182, 212, 0.2); /* var(--accent) အဖျော့ */
+  border-bottom: 2px solid rgba(6, 182, 212, 0.2); 
   padding-bottom: 8px;
 }
 
@@ -768,9 +740,18 @@ body {
   color: #64748b;
 }
 
-/* Available Stock စာသားကို Hidden လုပ်ရန် (အသစ်ထည့်သွင်းထားသော CSS) */
 #mStock {
   display: none !important;
+}
+
+/* Voucher Preview Canvas Element Styling */
+#voucherCanvasPreview {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  margin-bottom: 15px;
+  background: white;
 }
 
   </style>
@@ -808,7 +789,7 @@ body {
   </div>
 
   <div class="welcome-banner">
-    <h1>မင်္ဂလာပါခင်ဗျား။ မိမိလိုချင်သောပစ္စည်းများကို ဝယ်ယူလိုပါ က Buy ကို နိပ်ပါ။ Order တင်လိုပါ က 🛒 👈 ဒီဟာကိုနိပ်ပါ။ပြီးလျှင် Generate QR Order ကိုနိပ်ပါ။ ရလာသော QR Code ကို Download ဆွဲ၍ Page Messanger တွင်ပို့ ကာ Order တင်နိုင်ပါသည်။👨‍💻👨‍💼 ဝယ်ယူအားပေးသူ Customers တစ်ယောက် ချင်းစီတိုင်းအထူးကျေးဇူးတင်ရှိပါသည်ခင်ဗျား။🙏 </h1>
+    <h1>မင်္ဂလာပါခင်ဗျား။ မိမိလိုချင်သောပစ္စည်းများကို ဝယ်ယူလိုပါ က Buy ကို နိပ်ပါ။ Order တင်လိုပါ က 🛒 👈 ဒီဟာကိုနိပ်ပါ။ပြီးလျှင် Generate QR Order သို့မဟုတ် Generate Voucher ကိုနိပ်ပါ။ ရလာသောပုံကို Download ဆွဲ၍ Page Messanger တွင်ပို့ ကာ Order တင်နိုင်ပါသည်။👨‍💻👨‍💼 ဝယ်ယူအားပေးသူ Customers တစ်ယောက် ချင်းစီတိုင်းအထူးကျေးဇူးတင်ရှိပါသည်ခင်ဗျား။🙏 </h1>
   </div>
 
   <div class="container">
@@ -832,6 +813,7 @@ body {
       <div class="modal-body">
         <img id="mImg" style="width:100%; max-height:250px; object-fit:contain; margin-bottom:15px; border-radius:8px; background:#f8fafc;">
         <h2 id="mName" style="margin-bottom:5px;"></h2>
+        <div id="mSku" class="sku-text"></div>
         <h3 id="mPrice" style="color:var(--primary); margin-bottom:10px;"></h3>
         <p id="mStock" style="margin: 10px 0; color: var(--gray); font-size:0.9rem; display:none;" ></p>
         <p id="mDesc" style="line-height: 1.6; color:#475569;"></p>
@@ -854,7 +836,14 @@ body {
         
         <div class="cart-actions">
           <button class="filter-btn" style="border-color:var(--danger); color:var(--danger);" onclick="clearCart()">Clear Cart</button>
+          <button class="cart-btn" style="background-color: var(--success);" onclick="generateVoucherImage()">Generate Voucher Image</button>
           <button class="cart-btn" onclick="generateOrderQR()">Generate QR Order</button>
+        </div>
+
+        <div id="voucherSection" class="voucher-wrapper" style="display:none;">
+            <p style="margin-bottom:15px; text-align:center; font-size:0.9rem; color:var(--gray);">Voucher Preview အား အောက်တွင် ကြည့်ရှုနိုင်ပါသည်။</p>
+            <canvas id="voucherCanvasPreview"></canvas>
+            <button class="cart-btn" style="width:100%; justify-content:center; background-color: var(--success);" onclick="downloadVoucher_Fixed()">Download Voucher Image</button>
         </div>
 
         <div id="qrSection" class="qrcode-wrapper" style="display:none;">
@@ -880,7 +869,7 @@ body {
       <div class="footer-column">
         <h4>📍 ဆိုင်လိပ်စာ (Address)</h4>
         <p class="footer-text">မြိတ်မြို့နယ် ၊ချောင်းကူးငယ်ရပ်၊ တနင်္သာရီတိုင်းဒေသကြီး။</p>
-        <p class="footer-text" style="font-size: 0.85rem; color: var(--gray); margin-top: 5px;">(မြိတ်မြို့တွင်း 🛴 In 24 Hours အိမ်ရောက်‌ငွေချေစနစ်ဖြင့် ပို့ဆောင်ပေးပြီး၊ ကျန်မြို့များကို ငွေလွဲရောက်သည် နှင့်ကားဂိတ်သို့ပို့ဆောင်ပေးပါသည်ခင်ဗျား။🚛  )</p>
+        <p class="footer-text" style="font-size: 0.85rem; color: var(--gray); margin-top: 5px;">(မြိတ်မြို့တွင်း 🛴 In 24 Hours အိမ်ရောက်‌ငွေချေစနစ်ဖြင့် ပို့ဆောင်ပေးပြီး၊ ကျန်မြို့များကို Ngwe Lwe ရသည်နှင့် ကားဂိတ်သို့ ပို့ဆောင်ပေးပါသည်ခင်ဗျား)</p>
       </div>
 
       <div class="footer-column">
@@ -897,9 +886,7 @@ body {
   <div id="toast">Item added to cart</div>
 
   <script>
-    /* PRODUCT DATA 
-       တန်ဖိုးလျော့ချထားသောပစ္စည်းများတွင် discountPercent နှင့် oldPrice ကို သတ်မှတ်နိုင်သည်
-    */
+    /* PRODUCT DATA (SKU codes added) */
     const products = [
       { 
         id: 101, 
@@ -908,11 +895,11 @@ body {
         image: "images/5-Band-14W-resistor.png", 
         description: "တိကျမှုမြင့်မားပြီး DIY Project များတွင် အသုံးများသော ကွာလတီကောင်း Metal Film Resistor များဖြစ်ပါသည်။",
         values: [
-          { label: "100 Ohm", price: 100, stock: 15 },
-          { label: "220 Ohm", price: 100, stock: 15 },     
-          { label: "1k Ohm", price: 150, stock: 10 },       
-          { label: "10k Ohm", price: 150, stock: 6 },
-          { label: "1M Ohm", price: 200, stock: 5 }      
+          { label: "100 Ohm", price: 100, stock: 15, sku: "ECR - 000898" },
+          { label: "220 Ohm", price: 100, stock: 15, sku: "ECR - 000899" },     
+          { label: "1k Ohm", price: 150, stock: 10, sku: "ECR - 000900" },       
+          { label: "10k Ohm", price: 150, stock: 6, sku: "ECR - 000901" },
+          { label: "1M Ohm", price: 200, stock: 5, sku: "ECR - 000902" }      
         ]
       },
       { 
@@ -922,9 +909,8 @@ body {
         image: "images/electrolytic capacitor.png", 
         description: "Circuit များတွင် လျှပ်စစ်သိုလှောင်ရန်နှင့် Filter ပြုလုပ်ရန် အသုံးပြုနိုင်သော Capacitor များဖြစ်ပါသည်။",
         values: [
-          { label: "0.1uF / 50V", price: 150, stock: 30 },
-          { label: "0.22uF / 50V", price: 200, stock: 20 },  
-          
+          { label: "0.1uF / 50V", price: 150, stock: 30, sku: "ECR - 000912" },
+          { label: "0.22uF / 50V", price: 200, stock: 20, sku: "ECR - 000913" }  
         ]
       },
       { 
@@ -934,72 +920,71 @@ body {
         image: "images/Ceramic_Disc_Capacitor.png", 
         description: "Electronic Circuit များတွင် Filtering, Coupling, Decoupling နှင့် Noise Reduction အတွက် အသုံးများသော Ceramic Disc Capacitor ဖြစ်ပြီး Arduino, DIY နှင့် Electronics Project များအတွက် မရှိမဖြစ် Component တစ်ခုဖြစ်ပါသည်။",
         values: [
-          { label: "10 PF ", price: 150, stock: 20 },
-          { label: "22 PF ", price: 200, stock: 20 },  
-          { label: "30 PF ", price: 200, stock: 20 }, 
-          { label: "47 PF ", price: 250, stock: 10 },
-          { label: "100 PF ", price: 300, stock: 10 }
+          { label: "10 PF ", price: 150, stock: 20, sku: "ECR - 000923" },
+          { label: "22 PF ", price: 200, stock: 20, sku: "ECR - 000924" },  
+          { label: "30 PF ", price: 200, stock: 20, sku: "ECR - 000925" }, 
+          { label: "47 PF ", price: 250, stock: 10, sku: "ECR - 000926" },
+          { label: "100 PF ", price: 300, stock: 10, sku: "ECR - 000927" }
         ]
       },
-      
-      { id: 1, name: "Arduino Uno R3", price: 50500, oldPrice: 53200, discountPercent: 5, image: "images/Arduino Uno Board.png", category: "Board", description: "Digital Pin 14 ခု နှင့် Analog Pin 6 ခုပါဝင်ပြီး ၊ Arduino IDE နှင့် Programming သွင်း ကာ Project များစွာ ပြုလုပ် နိုင်သည်။", stock: 2 },
-      { id: 2, name: "Color Yellow LED (5mm)", price: 150,  image: "images/LED Yellow 5mm.png", category: "LED", description: "အလင်းအားကောင်းပြီး Circuit တွေ မှာ အရမ်းအသုံးဝင်တဲ့ မီးသီးလေးဖြစ်ပါတယ်။", stock: 100 },                                                       
-    { id: 3, name: "SG90 Servo Motor", price: 12750, image: "images/The-SG90-Servo-Motor.png", category: "Motor", description: "Robots လေးတွေဖန်တီးချင်သူတွေ အတွက် အရမ်းအသုံးဝင်ပြီး quality ကောင်းတဲ့ 180 Degree Servo Motor လေးပါ။", stock: 5 },
-      { id: 4, name: "Color Blue LED (5mm)", price: 150, image: "images/Blue Color LED.png", category: "LED", description: "အိမ် တွင်းအလှဆင်ဖို့အတွက်သုံးမလား? ညမီးအဖြစ်ပဲ့သုံးမလား? ကိုယ့်စိတ်ကြိုက် လိုသလိုအသုံးပြုလို့ကောင်းမဲ့ Blue Color LED လေးပါ။", stock: 100 },
-      { id: 5, name: "Color RED LED (5mm)", price: 150, image: "images/RED COLOR LED.png", category: "LED", description: "သင့်ရဲ့ Circuit မှာ အချက်ပြပေးမဲ့ မီးသီးလိုမျိုးကိုအသုံးပြုချင်ပါသလား? ကိုယ့်စိတ်ကြိုက်အသုံးပြုလို့ အဆင်ပြေနိုင်တဲ့ RED LED လေးပါ။", stock: 100 },
-      { id: 6, name: "IRFZ44N MOSFET", price: 4900, image: "images/IRFZ44N.png", category: "Component", description: "အိမ်တွင်း project တွေမှာ power control လုပ်ဖို့သုံးမလား? Motor, LED strip လို load တွေကို switch လုပ်ဖို့သုံးမလား?", stock: 5 },
-      { id: 7, name: "6x6x5mm Push Button", price: 200, image: "images/Push Button Switch 6x6x5mm.png", category: "Switch", description: "အသုံးပြုရလွယ်ကူသော DIP Switch အမျိုးအစာဖြစ်ပြီး Switch တစ်ခုချင်းစီကို ON/OFF အနေဖြင့် ထိန်းချုပ်နိုင်သော 2 position အမျိုးအစားဖြစ်ပါတယ်။", stock: 20 },
-      { id: 8, name: "HC-SR04-9 Ultrasonic Sensor", price: 8500, image: "images/Ultrasonic-Sensor-HC-SR04-9.png", category: "Sensor", description: "အကွာ အဝေးတိုင်းတာတဲ့ Project တွေ အတွက် အရမ်းအဆင်ပြေပြီး Arduino board တွေ နဲ့ တွဲဖက် အသုံပြုလို့ ကောင်းတဲ့ Module လေးဖြစ်ပါ တယ်။", stock: 3 },
-      { id: 9, name: "Dip Switch 2 position", price: 750, image: "images/Dip Switch 2 position.png", category: "Switch", description: "အသုံးပြုရလွယ်ကူသော DIP Switch အမျိုးအစာဖြစ်ပြီး Switch တစ်ခုချင်းစီကို ON/OFF အနေဖြင့် ထိန်းချုပ်နိုင်သော 2 position အမျိုးအစားဖြစ်ပါတယ်။", stock: 3 },
-      { id: 10, name: "Dip Switch 4 position", price: 900, image: "images/Dip Switch 4 position.png", category: "Switch", description: "အသုံးပြုရလွယ်ကူသော DIP Switch အမျိုးအစာဖြစ်ပြီး Switch တစ်ခုချင်းစီကို ON/OFF အနေဖြင့် ထိန်းချုပ်နိုင်သော 4 position အမျိုးအစားဖြစ်ပါတယ်။", stock: 3 },
-      { id: 11, name: "Dip Switch 6 position", price: 1050, image: "images/Dip Switch 6 position.png", category: "Switch", description: "အသုံးပြုရလွယ်ကူသော DIP Switch အမျိုးအစာဖြစ်ပြီး Switch တစ်ခုချင်းစီကို ON/OFF အနေဖြင့် ထိန်းချုပ်နိုင်သော 6 position အမျိုးအစားဖြစ်ပါတယ်။", stock: 3 },
-      { id: 12, name: "Dip Switch 5 position", price: 1050, image: "images/Dip Switch 5 position.png", category: "Switch", description: "အသုံးပြုရလွယ်ကူသော DIP Switch အမျိုးအစာဖြစ်ပြီး Switch တစ်ခုချင်းစီကို ON/OFF အနေဖြင့် ထိန်းချုပ်နိုင်သော 5 position အမျိုးအစားဖြစ်ပါတယ်။", stock: 3 },
-      { id: 13, name: "16x2 LCD Blue backlight", price: 13500, image: "images/LCD Blue backlight.png", category: "Display", description: "အမည်လေးတွေ ပေါ် အောင် လုပ်ချင်လား? ဒါမှမဟုတ် 2D Game လေးကိုဖန်တီး ပြီး LCD ပေါ် မှာ နိပ် လို့ ရ‌အောင် ဖန်တီးချင်သလား? ဒီ Blue backlight LCD လေးကသင့် အတွက် အဆင်ပြေစေမှာပါနော်။", stock: 8 },
-      { id: 14, name: "CD4017 IC", price: 1350, image: "images/CD4017 IC.png", category: "IC", description: "LED Chaser Circuit ဖန်တီးချင်သူများ ဘုရားနောက်ခံ မီးပြုလုပ်ချင်သူများအတွက် အထူးသင့်လျော်တဲ့ CD4017 IC လေးပါ။", stock: 10 },
-      { id: 15, name: "IR LED", price: 500, image: "images/IRLED.png", category: "LED", description: "Arduino board နဲ့ တွဲသုံးပြီး TV Remote အဖြစ်အသုံးပြုလို့ ရတဲ့ IR LED လေးပါ။", stock: 5 },
-      { id: 16, name: "8 Pin IC socket", price: 300, image: "images/8-pin IC socket.png", category: "Accessory", description: "Project လုပ် တဲ့အခါ Circuit တွေ ကို ခဲဆော်ရင် IC အပူလွန်ကဲပြီးပျက်စီးသွားတာတို့ ဖြစ်သွားရင် အလွယ်တကူ ဖြုတ်/တပ် လို့ရအောင် အသုံးပြုလို့ရတဲ့ 8 Pin IC Socket လေးပါ။", stock: 5 },
-      { id: 17, name: "7x9cm universal PCB", price: 6300, image: "images/7x9cm universal PCB.png", category: "Board", description: "ကိုယ်ပိုင် Circuits ဖန်တီးချင်တဲ့ Beginners သမားလေးများအတွက် အထူးအဆင်ပြေမဲ့ Universal PCB Board လေးပါ။", stock: 5 },
-      { id: 18, name: "16MHZ Crystal Oscillator", price: 600, image: "images/16MHZ_Crystal.png", category: "Component", description: "ATMEGA 328P Microcontroller IC နဲ့ တွဲ သုံးပြီး ကိုယ်ပိုင် Stand alone Arduino board တည်ဆောက်တဲ့ အခါ အသုံးပြလို့ ရတဲ့ Oscillatro ပါ။", stock: 5 },
-      { id: 19, name: "9V battery socket", price: 1200, image: "images/9V battery socket.png", category: "Power", description: "သင့်ရဲ့ Circuit မှာ Battery ကို အဖြုတ်အတပ်လွယ်ကူစေမှာဖြစ်ပြီး Battery ပျက်စိးသွားပါကလွယ်ကူစွာလှဲနိုင်အောင် အသုံးပြလို့ရမဲ့ Battery Socket လေးပါ။", stock: 5 },
-      { id: 20, name: "9V Battery Clip with barrel jack", price: 1500, image: "images/9V-Battery-Clip-with-barrel-jack.png", category: "Power", description: "အသုံးပြုရလွယ်ကူပြီးတပ် ဆင်ရအဆင်ပြေစေမဲ့ Battery Clip with barrel jack လေးဖြစ်ပါတယ်။", stock: 5 },
-      { id: 21, name: "Color White LED(5mm)", price: 150, image: "images/IRLED.png", category: "LED", description: "ညဘက်အမှောင် မှာလက်နိပ်ဓာတ် မီးအဖြစ်သုံးဖို့ အဆင်ပြေမဲ့ အဖြူရောင် LED မီးသီးလေးပါ ဗျာ့။ ", stock: 100 },
-      { id: 22, name: "PIR Sensor HC-SR501 Motion Sensor", price: 7950, image: "images/PIR Sensor HC-SR501.png", category: "Sensor", description: " လှုပ်ရှားမှုကိုအာရုံခံပြီး အလုပ်လုပ် ပေးမဲ့ PIR Motion Sensor ‌လေးပါဗျာ့။ Home Security Project မှာ အသုံးဝင် မဲ့ Sensor ဖြစ်ပါတယ်ဗျာ့။", stock: 5 },
-      { id: 23, name: " Female Pin Headers ", price:500 , image: "images/Pin Header Female.png", category: "Component", description: "ကိုယ့်ရဲ့ Circuit မှာ Input (or) Output အဖြစ် Wire တွေ ကိုသုံးမဲ့ အစား Pin Header လေးတွေ ကို အစားထိုးအသုံးပြုခြင်းက Circuit ကိုပိုမိုပြီး သန့် စေပါတယ်ဗျာ့။", stock:3 },
-      { id: 24, name: " Male Pin Headers ", price:550 , image: "images/Pin Header Male.png", category: "Component", description: "ကိုယ့်ရဲ့ Circuit မှာ Input (or) Output အဖြစ် Wire တွေ ကိုသုံးမဲ့ အစား Pin Header လေးတွေ ကို အစားထိုးအသုံးပြုခြင်းက Circuit ကိုပိုမိုပြီး သန့် စေပါတယ်ဗျာ့။", stock:3 },
-      { id: 25, name: " 0.91 inch Blue OLED", price:11500 , image: "images/0.91 inch Blue OLED.png", category: "Component", description: "ကိုယ့် ရဲ့ project မှာ0.91 inch Blue OLED  ကိုသုံးပြီး mini computer လိုမျိုးပြုလုပ်လိုပါသလား။ဒါမှမဟုတ် microcontroller များတွင် data display, menu system, sensor reading နှင့် small interface project များအတွက် ကျယ်ပြန့်စွာ အသုံးပြုလိုပါသလား ဒီ display module ကသင့်project မှာသေသပ်လှပနေစေမှာအမှန်ပဲ့နော်။", stock:3 },
-      { id: 26, name: "555 Timer IC", price:750 , image: "images/555 Timer IC.png", category: "IC", description: "555 Timer IC ကို timing, delay, pulse generation နှင့် oscillator circuit တွေမှာ အသုံးများသော IC တစ်ခုဖြစ်ပါတယ်။ LED blink, PWM control, tone generator နှင့် digital timing applications များတွင်လည်း ကျယ်ပြန့်စွာ အသုံးပြုနိုင်ပါသည်ခင်‌ဗျား", stock:10 },
-      { id: 27, name: "Arduino Nano Board", price:22000 , image: "images/Arduino Nano Board.png", category: "Board", description: "Arduino Nano Board သည် ATmega328P microcontroller ကိုအခြေခံထားသော compact development board တစ်ခုဖြစ်ပြီး 32KB Flash memory (storage) နှင့် 5V operating voltage တွင် အလုပ်လုပ်ပါတယ်။ small size ဖြစ်သောကြောင့် embedded system, sensor project နှင့် portable electronics များတွင် ကျယ်ပြန့်စွာ အသုံးပြုနိုင်ပါသည်ခင်ဗျား။", stock:0 },
-      { id: 28, name: "MFRC-522 RFID Module", price:6200 , image: "images/MFRC-522 RFID Module.png", category: "Sensor", description: "MFRC-522 RFID Module သည် 13.56MHz RFID card/tag များကို ဖတ်ရှုနိုင်သော module တစ်ခုဖြစ်ပြီး SPI communication ဖြင့် Arduino နှင့်ချိတ်ဆက်ကာ access control, attendance system နှင့် security project များတွင် အသုံးပြုနိုင်ပါသည်။ 3.3V voltage ဖြင့် အလုပ်လုပ်ပါသည်။5V ပေးမိပါက ပျက်စီးသွားနိုင်ပါသည်ခင်ဗျား။", stock:0 },
-      { id: 29, name: "AS608 Optical Fingerprint Sensor Module", price:68000 , image: "images/AS608OpticalFingerprintSensorModule_3.png", category: "Sensor", description: "AS608 Optical Fingerprint Sensor Module သည် လက်ဗွေများကို Scan လုပ်ပြီး စစ်ဆေးနိုင်သော biometric module တစ်ခုဖြစ်ပါတယ်။ UART (Serial) communication ဖြင့် Arduino နှင့်ချိတ်ဆက်အသုံးပြုနိုင်ပါသည်။ 3.3V–5V operating voltage ဖြင့် အလုပ်လုပ်ပြီး fingerprint templates များကို internal storage ထဲတွင် သိမ်းဆည်းနိုင်သောကြောင့် security နှင့် access control system များတွင် အသုံးပြုနိုင်ပါသည်ခင်ဗျား။", stock:0 },                     
-      { id: 30, name: "Atmega328P-PU microcontroller", price:24000 , image: "images/Atmega328P-PU microcontroller.png", category: "IC", description: "ATmega328P-PU သည် 32KB Flash, 2KB SRAM နှင့် 1KB EEPROM ပါဝင်ပြီး 1.8V–5.5V ဖြင့် အလုပ်လုပ်သော microcontroller ဖြစ်ပါသည်။ ကိုယ်ပိုင် Arduino UNO board တည်ဆောက်ခြင်သူများအတွက်အဆင်ပြေနိုင်မည့် IC တစ်ခုဖြစ်ပါသည်ခင်ဗျား။", stock:0 },
-      { id: 31, name: "Type-C charging Module", price:1500 , image: "images/Type C charging.png", category: "Power", description: "Type-C Charging Module သည် USB Type-C မှတစ်ဆင့် ဘက်ထရီများကို အားသွင်းပေးနိုင်သော module တစ်ခုဖြစ်ပြီး 5V input ဖြင့် lithium battery charging circuit များတွင် အသုံးပြုနိုင်ပါသည်။ compact size ဖြစ်ပြီး portable electronics နှင့် DIY power supply project များတွင် အဆင်ပြေစွာ အသုံးပြုနိုင်ပါသည်။", stock:10 },
-      { id: 32, name: "3V Active Buzzer", price:1350 , image: "images/3V buzzer.png", category: "Component", description: "3V Buzzer သည် အသံထုတ်ပေးနိုင်သော component တစ်ခုဖြစ်ပြီး 3V voltage ဖြင့် အလုပ်လုပ်ကာ alert, notification နှင့် simple sound output project များတွင် အသုံးပြုနိုင်ပါသည်။ Arduino နှင့်ချိတ်ဆက်၍ beep sound, alarm system နှင့် indication circuit များတွင် လွယ်ကူစွာ အသုံးပြုနိုင်ပါသည်။", stock:5 },
-      { id: 33, name: "5V Active Buzzer", price:1650 , image: "images/5V active Buzzer.png", category: "Component", description: "5V Active Buzzer သည် internal oscillator ပါဝင်သောကြောင့် 5V supply ပေးလိုက်သည်နှင့် အသံထွက်နိုင်သော component တစ်ခုဖြစ်ပြီး alarm, alert နှင့် notification circuit များတွင် အသုံးပြုနိုင်ပါသည်။ Arduino နှင့်ချိတ်ဆက်ရာတွင် code မလိုအပ်ဘဲ HIGH signal ပေးရုံဖြင့် beep sound ထုတ်နိုင်ပါသည်။", stock:5 },
-      { id: 34, name: "12V Active Buzzer", price:1650 , image: "images/12V Active Buzzer.png", category: "Component", description: "12V Active Buzzer သည် internal oscillator ပါဝင်သောကြောင့် 12V supply ပေးလိုက်သည်နှင့် အသံထွက်နိုင်သော component တစ်ခုဖြစ်ပြီး alarm, warning နှင့် industrial notification system များတွင် အသုံးပြုနိုင်ပါသည်။control circuit များနှင့် ချိတ်ဆက်၍ relay သို့မဟုတ် transistor မှတစ်ဆင့် လွယ်ကူစွာ အသုံးပြုနိုင်ပါသည်။", stock:5 },
-      { id: 35, name: "12V Relay", price:2500 , image: "images/12V Relay.png", category: "Switch", description: "12V Relay သည် low voltage control signal ဖြင့် high voltage/current load များကို switch လုပ်နိုင်သော electromagnetic switch တစ်ခုဖြစ်ပြီး 12V coil voltage ဖြင့် အလုပ်လုပ်ပါသည်။ Arduino နှင့်ချိတ်ဆက်၍ light, motor နှင့် home automation system များတွင် လုံခြုံစွာ control လုပ်နိုင်ပါသည်။", stock:3 },
-      { id: 36, name: "7 Segment Display 1 Digit", price:1600 , image: "images/7 Segment Display 1 Digit.png", category: "Display", description: "7 Segment Display (1 Digit) သည် 0 မှ 9 အထိ digit များကို segment 7 ခုဖြင့် ပြသပေးနိုင်သော display တစ်ခုဖြစ်ပြီး digital counter နှင့် number display project များတွင် အသုံးပြုနိုင်ပါသည်။ Arduino (သို့မဟုတ်)တခြားသော Microcontroller များနှင့်  ချိတ်ဆက်ရာ၍ segment တစ်ခုချင်းစီကို control လုပ်ကာ ", stock:5 },
-      { id: 37, name: "9V Battery", price:7500 , image: "images/9V battery.png", category: "Power", description: "9V Battery သည် portable power source တစ်ခုဖြစ်ပြီး 9V output voltage ပေးနိုင်ကာ small electronic circuit နှင့် Arduino project များတွင် power supply အဖြစ် အသုံးပြုနိုင်ပါသည်။ lightweight ဖြစ်ပြီး testing, prototype နှင့် mobile electronics project များတွင် အဆင်ပြေစွာ အသုံးပြုနိုင်ပါသည်။", stock:3 },
-      { id: 38, name: "I2C Module for 16x2 LCD Display", price:4500 , image: "images/I2C Module for 16x2 LCD.png", category: "Module", description: "I2C Module for 16x2 LCD သည် LCD ကို I2C communication ဖြင့် control လုပ်နိုင်စေရန် အသုံးပြုသော module တစ်ခုဖြစ်ပြီး SDA နှင့် SCL pin နှစ်ခုပဲ အသုံးပြုရသဖြင့် wiring ကိုလျှော့ချနိုင်ပါသည်။Arduino နှင့်ချိတ်ဆက်ရာတွင် pin usage ကိုလျှော့ပေးပြီး LCD display project များတွင် အဆင်ပြေစွာ အသုံးပြုနိုင်ပါသည်။", stock:8 },
-      { id: 39, name: "Breadboard (or) Project Board", price:15900 , image: "images/Project Board.png", category: "Board", description: "Project Board သည် electronic component များကို စမ်းသပ်တည်ဆောက်ရန် အသုံးပြုသော board တစ်ခုဖြစ်ပြီး soldering သို့မဟုတ် temporary connection များဖြင့် circuit များကို အလွယ်တကူ ပြုလုပ်နိုင်ပါသည်။prototype design နှင့် Arduino project များတွင် circuit ကို စမ်းသပ်ရန်နှင့် ပြင်ဆင်ရန် အဆင်ပြေစွာ အသုံးပြုနိုင်ပါသည်။", stock:10 },
-      { id: 40, name: "Color Green LED(5mm)", price: 150, image: "images/Green Color LED.png", category: "LED", description: "ကိုယ့် ရဲ့ Circuit မှာ Power (on/off) indicator အဖြစ်သုံးလို့ အဆင်ပြေစေမဲ့ Green Color LED လေးပါခင်ဗျာ့။  ", stock: 100 },
-      { id: 41, name: "30x70mm Double-Sided PCB Prototype Board", price: 1800, image: "images/30x70mm Pcb.png", category: "Board", description: "Electronic Project မျိုးစုံ တည်ဆောက်ရာတွင် Component များကို အလွယ်တကူ စမ်းသပ်တပ်ဆင်နိုင်ပြီး Circuit Prototype များ ပြုလုပ်ရန် အထူးသင့်တော်သော Double-Sided PCB Prototype Board လေးပါခင်ဗျာ့။", stock: 10 },
-      { id: 42, name: "LM3914 IC", price: 3500, image: "images/LM3914 IC.png", category: "IC", description: "Voltage Level များကို LED Bar Graph သို့မဟုတ် Dot Display အဖြစ် အလွယ်တကူ ပြသနိုင်စေသော LM3914 Driver IC ဖြစ်ပြီး Battery Level Indicator၊ Audio VU Meter နှင့် Measurement Projects များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 3 },
-      { id: 43, name: "RS-775 High RPM & High Torque 12V DC Motor", price: 53000, image: "images/RS-775 High RPM and High Torque 12V  DC.png", category: "Motor", description: "High Speed နှင့် High Torque ကို တစ်ပြိုင်နက် ပေးစွမ်းနိုင်သော RS-775 12V DC Motor ဖြစ်ပြီး DIY Project များ၊ Drill၊ Cutting Machine၊ Mini Lathe နှင့် Robotics Project များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 0 },
-      { id: 44, name: "0.96 Inch OLED Display", price: 17400, image: "images/0.96 oled display.png", category: "Display", description: "128x64 Resolution ဖြင့် စာသား၊ ပုံများနှင့် Sensor Data များကို ကြည်လင်ပြတ်သားစွာ ဖော်ပြနိုင်သော 0.96 Inch OLED Display ဖြစ်ပြီး Arduino, ESP32, ESP8266 နှင့် Raspberry Pi Project များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 0 },
-      { id: 45, name: "9V Battery Clip with Crocodile Clips", price: 1800, image: "images/9V_Battery_Clip_Crocodile.png", category: "Power", description: "9V Battery ကို Circuit များနှင့် အလွယ်တကူ ချိတ်ဆက်အသုံးပြုနိုင်ရန် ပြုလုပ်ထားသော Battery Clip with Crocodile Clips ဖြစ်ပြီး Electronics Testing၊ DIY Projects နှင့် Educational Experiments များအတွက် အသုံးဝင်သော Accessory လေးဖြစ်ပါသည်။", stock: 4 },
-      { id: 46, name: "13.56MHz MIFARE RFID Card (0.8mm)", price: 2500, image: "images/13.56M Hz Mifare card 0.8mm.png", category: "Accessory", description: "13.56MHz Frequency ဖြင့် အလုပ်လုပ်သော MIFARE RFID Card ဖြစ်ပြီး RFID Access Control, Attendance System, Smart Card နှင့် Security Projects များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 0 },
-      { id: 47, name: "5mm GL5549 LDR", price: 800, image: "images/5mm (GL5549) LDR.png", category: "Sensor", description: "အလင်းရောင်ပမာဏကို ခံစားနိုင်သော 5mm GL5549 LDR Sensor ဖြစ်ပြီး Automatic Light Control, Smart Lighting, Light Detection နှင့် Arduino Project များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။ [Light Resistance: 100 – 200KΩ]  [Dark Resistance: 10MΩ]  [RiseTime: 20ms]  [Fall Time: 30ms]", stock: 10 },
-      { id: 48, name: "ESP32 Development Board (USB-C)", price: 50250, image: "images/ESP32 Development Board( USB-C).png", category: "Board", description: "Wi-Fi နှင့် Bluetooth Built-in ပါဝင်သော ESP32 Development Board ဖြစ်ပြီး IoT, Smart Home, Robotics နှင့် Wireless Communication Project များအတွက် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။ USB-C Port ပါဝင်သဖြင့် Programming နှင့် Power Supply ချိတ်ဆက်ရာတွင် ပိုမိုအဆင်ပြေစေပါသည်။", stock: 0 },
-      { id: 49, name: "Battery Case (CR2032)", price: 1050, image: "images/Battery Case (CR2032).png", category: "Power", description: "CR2032 Battery ကို အလွယ်တကူ ထည့်သွင်းအသုံးပြုနိုင်သော Compact Battery Holder လေးဖြစ်ပြီး Electronics Project, Backup Power Circuit နှင့် Portable Device များအတွက် အသုံးဝင်သော Accessory တစ်ခုဖြစ်ပါသည်။", stock: 10 },
-      { id: 50, name: "5mm Photo Diode", price: 500, image: "images/Photo Diode 5mm.png", category: "Sensor", description: "အလင်းရောင်နှင့် Infrared Signal များကို လျင်မြန်စွာ တုံ့ပြန်နိုင်သော 5mm Photo Diode လေးဖြစ်ပြီး Object Detection, Light Sensing, IR Communication နှင့် DIY Electronics Project များအတွက် အသုံးများသော Sensor တစ်ခုဖြစ်ပါသည်။", stock: 10 },
-      { id: 51, name: "NRF24L01 2.4GHz Wireless Module", price: 7500, image: "images/NRF24L01 with 2.4 GHz wireless module .png", category: "Wireless Module", description: "ပါဝါသုံးစွဲမှုနည်းပြီး ယုံကြည်စိတ်ချရသော Wireless Data Communication ကို ပံ့ပိုးပေးနိုင်သည့် NRF24L01 2.4GHz Module လေးဖြစ်ပြီး Remote Control, Sensor Network, Home Automation နှင့် Robotics Project များအတွက် အသုံးများသော Module တစ်ခုဖြစ်ပါသည်။", stock: 6 },
-      { id: 52, name: "5V 1 Channel Relay Module", price: 5900, image: "images/5V 1 Channel Relay Module.png", category: "Relay Module", description: "5V Signal ဖြင့် AC နှင့် DC Device များကို အလွယ်တကူ On/Off Control ပြုလုပ်နိုင်သော 1 Channel Relay Module ဖြစ်ပြီး Arduino, ESP32, Smart Home နှင့် Automation Project များအတွက် အထူးသင့်တော်ပါသည်။", stock: 4 },
-      { id: 53, name: "Alligator Clip 35mm", price: 1000, image: "images/Alligator clip 35mm.png", category: "Power", description: "Electronic Circuit များနှင့် Testing Project များတွင် Wire များကို အလွယ်တကူ ချိတ်ဆက်အသုံးပြုနိုင်သော 3mm Alligator Clip ဖြစ်ပြီး DIY Project နှင့် Laboratory အသုံးပြုမှုများအတွက် အထူးသင့်တော်ပါသည်။", stock: 20 },
-      { id: 54, name: "Mini Water Pump 5V", price: 7200, image: "images/Mini water pump 5V.png", category: "Motor", description: "5V Power ဖြင့် အလုပ်လုပ်နိုင်သော Mini Water Pump ဖြစ်ပြီး Automatic Watering System, Aquarium, DIY Project နှင့် Arduino, ESP32 Control Project များအတွက် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 4 },
-      { id: 55, name: "Jumper Cap Black Color", price: 300, image: "images/Jumper Cap Black Color.png", category: "Accessories", description: "Pin Header များကို အလွယ်တကူ ချိတ်ဆက်၍ Setting နှင့် Configuration ပြောင်းလဲနိုင်သော Jumper Cap ဖြစ်ပြီး Development Board, Hard Disk နှင့် Electronics Project များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 20 },
-      { id: 56, name: "Jumper Cap Blue Color", price: 300, image: "images/Jumper Cap Blue Color.png", category: "Accessories", description: "Pin Header များကို အလွယ်တကူ ချိတ်ဆက်၍ Setting နှင့် Configuration ပြောင်းလဲနိုင်သော Jumper Cap ဖြစ်ပြီး Development Board, Hard Disk နှင့် Electronics Project များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 20 },
-      { id: 57, name: "Jumper Cap Red Color", price: 300, image: "images/Jumper Cap Red Color.png", category: "Accessories", description: "Pin Header များကို အလွယ်တကူ ချိတ်ဆက်၍ Setting နှင့် Configuration ပြောင်းလဲနိုင်သော Jumper Cap ဖြစ်ပြီး Development Board, Hard Disk နှင့် Electronics Project များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 20 },
-      { id: 58, name: "Jumper Cap Yellow Color", price: 300, image: "images/Jumper Cap Yellow Color.png", category: "Accessories", description: "Pin Header များကို အလွယ်တကူ ချိတ်ဆက်၍ Setting နှင့် Configuration ပြောင်းလဲနိုင်သော Jumper Cap ဖြစ်ပြီး Development Board, Hard Disk နှင့် Electronics Project များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 20 }
+      { id: 1, name: "Arduino Uno R3", price: 50500, oldPrice: 53200, discountPercent: 5, image: "images/Arduino Uno Board.png", category: "Board", description: "Digital Pin 14 ခု နှင့် Analog Pin 6 ခုပါဝင်ပြီး ၊ Arduino IDE နှင့် Programming သွင်း ကာ Project များစွာ ပြုလုပ် နိုင်သည်။", stock: 2, sku: "ECR - 000930" },
+      { id: 2, name: "Color Yellow LED (5mm)", price: 150,  image: "images/LED Yellow 5mm.png", category: "LED", description: "အလင်းအားကောင်းပြီး Circuit တွေ မှာ အရမ်းအသုံးဝင်တဲ့ မီးသီးလေးဖြစ်ပါတယ်။", stock: 100, sku: "ECR - 000931" },                                                       
+      { id: 3, name: "SG90 Servo Motor", price: 12750, image: "images/The-SG90-Servo-Motor.png", category: "Motor", description: "Robots လေးတွေဖန်တီးချင်သူတွေ အတွက် အရမ်းအသုံးဝင်ပြီး quality ကောင်းတဲ့ 180 Degree Servo Motor လေးပါ။", stock: 5, sku: "ECR - 000932" },                                                               
+      { id: 4, name: "Color Blue LED (5mm)", price: 150, image: "images/Blue Color LED.png", category: "LED", description: "အိမ် တွင်းအလှဆင်ဖို့အတွက်သုံးမလား? ညမီးအဖြစ်ပဲ့သုံးမလား? ကိုယ့်စိတ်ကြိုက် လိုသလိုအသုံးပြုလို့ကောင်းမဲ့ Blue Color LED လေးပါ။", stock: 100 ,sku: "ECR - 000933"},
+      { id: 5, name: "Color RED LED (5mm)", price: 150, image: "images/RED COLOR LED.png", category: "LED", description: "သင့်ရဲ့ Circuit မှာ အချက်ပြပေးမဲ့ မီးသီးလိုမျိုးကိုအသုံးပြုချင်ပါသလား? ကိုယ့်စိတ်ကြိုက်အသုံးပြုလို့ အဆင်ပြေနိုင်တဲ့ RED LED လေးပါ။", stock: 100 ,sku: "ECR - 000934"},
+      { id: 6, name: "IRFZ44N MOSFET", price: 4900, image: "images/IRFZ44N.png", category: "Component", description: "အိမ်တွင်း project တွေမှာ power control လုပ်ဖို့သုံးမလား? Motor, LED strip လို load တွေကို switch လုပ်ဖို့သုံးမလား?", stock: 5,sku: "ECR - 000935" },
+      { id: 7, name: "6x6x5mm Push Button", price: 200, image: "images/Push Button Switch 6x6x5mm.png", category: "Switch", description: "အသုံးပြုရလွယ်ကူသော DIP Switch အမျိုးအစာဖြစ်ပြီး Switch တစ်ခုချင်းစီကို ON/OFF အနေဖြင့် ထိန်းချုပ်နိုင်သော 2 position အမျိုးအစားဖြစ်ပါတယ်။", stock: 20,sku: "ECR - 000936" },
+      { id: 8, name: "HC-SR04-9 Ultrasonic Sensor", price: 8500, image: "images/Ultrasonic-Sensor-HC-SR04-9.png", category: "Sensor", description: "အကွာ အဝေးတိုင်းတာတဲ့ Project တွေ အတွက် အရမ်းအဆင်ပြေပြီး Arduino board တွေ နဲ့ တွဲဖက် အသုံပြုလို့ ကောင်းတဲ့ Module လေးဖြစ်ပါ တယ်။", stock: 3 ,sku: "ECR - 000937"},
+      { id: 9, name: "Dip Switch 2 position", price: 750, image: "images/Dip Switch 2 position.png", category: "Switch", description: "အသုံးပြုရလွယ်ကူသော DIP Switch အမျိုးအစာဖြစ်ပြီး Switch တစ်ခုချင်းစီကို ON/OFF အနေဖြင့် ထိန်းချုပ်နိုင်သော 2 position အမျိုးအစားဖြစ်ပါတယ်။", stock: 3 ,sku: "ECR - 000938"},
+      { id: 10, name: "Dip Switch 4 position", price: 900, image: "images/Dip Switch 4 position.png", category: "Switch", description: "အသုံးပြုရလွယ်ကူသော DIP Switch အမျိုးအစာဖြစ်ပြီး Switch တစ်ခုချင်းစီကို ON/OFF အနေဖြင့် ထိန်းချုပ်နိုင်သော 4 position အမျိုးအစားဖြစ်ပါတယ်။", stock: 3 ,sku: "ECR - 000939"},
+      { id: 11, name: "Dip Switch 6 position", price: 1050, image: "images/Dip Switch 6 position.png", category: "Switch", description: "အသုံးပြုရလွယ်ကူသော DIP Switch အမျိုးအစာဖြစ်ပြီး Switch တစ်ခုချင်းစီကို ON/OFF အနေဖြင့် ထိန်းချုပ်နိုင်သော 6 position အမျိုးအစားဖြစ်ပါတယ်။", stock: 3 ,sku: "ECR - 000940"},
+      { id: 12, name: "Dip Switch 5 position", price: 1050, image: "images/Dip Switch 5 position.png", category: "Switch", description: "အသုံးပြုရလွယ်ကူသော DIP Switch အမျိုးအစာဖြစ်ပြီး Switch တစ်ခုချင်းစီကို ON/OFF အနေဖြင့် ထိန်းချုပ်နိုင်သော 5 position အမျိုးအစားဖြစ်ပါတယ်။", stock: 3,sku: "ECR - 000941" },
+      { id: 13, name: "16x2 LCD Blue backlight", price: 13500, image: "images/LCD Blue backlight.png", category: "Display", description: "အမည်လေးတွေ ပေါ် အောင် လုပ်ချင်လား? ဒါမှမဟုတ် 2D Game လေးကိုဖန်တီး ပြီး LCD ပေါ် မှာ နိပ် လို့ ရ‌အောင် ဖန်တီးချင်သလား? ဒီ Blue backlight LCD လေးကသင့် အတွက် အဆင်ပြေစေမှာပါနော်။", stock: 8,sku: "ECR - 000942" },
+      { id: 14, name: "CD4017 IC", price: 1350, image: "images/CD4017 IC.png", category: "IC", description: "LED Chaser Circuit ဖန်တီးချင်သူများ ဘုရားနောက်ခံ မီးပြုလုပ်ချင်သူများအတွက် အထူးသင့်လျော်တဲ့ CD4017 IC လေးပါ။", stock: 10 ,sku: "ECR - 000943"},
+      { id: 15, name: "IR LED", price: 500, image: "images/IRLED.png", category: "LED", description: "Arduino board နဲ့ တွဲသုံးပြီး TV Remote အဖြစ်အသုံးပြုလို့ ရတဲ့ IR LED လေးပါ။", stock: 5 ,sku: "ECR - 000944"},
+      { id: 16, name: "8 Pin IC socket", price: 300, image: "images/8-pin IC socket.png", category: "Accessory", description: "Project လုပ် တဲ့အခါ Circuit တွေ ကို ခဲဆော်ရင် IC အပူလွန်ကဲပြီးပျက်စီးသွားတာတို့ ဖြစ်သွားရင် အလွယ်တကူ ဖြုတ်/တပ် လို့ရအောင် အသုံးပြုလို့ရတဲ့ 8 Pin IC Socket လေးပါ။", stock: 5 ,sku: "ECR - 000945"},
+      { id: 17, name: "7x9cm universal PCB", price: 6300, image: "images/7x9cm universal PCB.png", category: "Board", description: "ကိုယ်ပိုင် Circuits ဖန်တီးချင်တဲ့ Beginners သမားလေးများအတွက် အထူးအဆင်ပြေမဲ့ Universal PCB Board လေးပါ။", stock: 5 ,sku: "ECR - 000946"},
+      { id: 18, name: "16MHZ Crystal Oscillator", price: 600, image: "images/16MHZ_Crystal.png", category: "Component", description: "ATMEGA 328P Microcontroller IC နဲ့ တွဲ သုံးပြီး ကိုယ်ပိုင် Stand alone Arduino board တည်ဆောက်တဲ့ အခါ အသုံးပြလို့ ရတဲ့ Oscillatro ပါ။", stock: 5,sku: "ECR - 000947" },
+      { id: 19, name: "9V battery socket", price: 1200, image: "images/9V battery socket.png", category: "Power", description: "သင့်ရဲ့ Circuit မှာ Battery ကို အဖြုတ်အတပ်လွယ်ကူစေမှာဖြစ်ပြီး Battery ပျက်စိးသွားပါကလွယ်ကူစွာလှဲနိုင်အောင် အသုံးပြလို့ရမဲ့ Battery Socket လေးပါ။", stock: 5 ,sku: "ECR - 000948"},
+      { id: 20, name: "9V Battery Clip with barrel jack", price: 1500, image: "images/9V-Battery-Clip-with-barrel-jack.png", category: "Power", description: "အသုံးပြုရလွယ်ကူပြီးတပ် ဆင်ရအဆင်ပြေစေမဲ့ Battery Clip with barrel jack လေးဖြစ်ပါတယ်။", stock: 5 ,sku: "ECR - 000949"},
+      { id: 21, name: "Color White LED(5mm)", price: 150, image: "images/IRLED.png", category: "LED", description: "ညဘက်အမှောင် မှာလက်နိပ်ဓာတ် မီးအဖြစ်သုံးဖို့ အဆင်ပြေမဲ့ အဖြူရောင် LED မီးသီးလေးပါ ဗျာ့။ ", stock: 100 ,sku: "ECR - 000950"},
+      { id: 22, name: "PIR Sensor HC-SR501 Motion Sensor", price: 7950, image: "images/PIR Sensor HC-SR501.png", category: "Sensor", description: " လှုပ်ရှားမှုကိုအာရုံခံပြီး အလုပ်လုပ် ပေးမဲ့ PIR Motion Sensor ‌လေးပါဗျာ့။ Home Security Project မှာ အသုံးဝင် မဲ့ Sensor ဖြစ်ပါတယ်ဗျာ့။", stock: 5 ,sku: "ECR - 000951"},
+      { id: 23, name: " Female Pin Headers ", price:500 , image: "images/Pin Header Female.png", category: "Component", description: "ကိုယ့်ရဲ့ Circuit မှာ Input (or) Output အဖြစ် Wire တွေ ကိုသုံးမဲ့ အစား Pin Header လေးတွေ ကို အစားထိုးအသုံးပြုခြင်းက Circuit ကိုပိုမိုပြီး သန့် စေပါတယ်ဗျာ့။", stock:3 ,sku: "ECR - 000952"},
+      { id: 24, name: " Male Pin Headers ", price:550 , image: "images/Pin Header Male.png", category: "Component", description: "ကိုယ့်ရဲ့ Circuit မှာ Input (or) Output အဖြစ် Wire တွေ ကိုသုံးမဲ့ အစား Pin Header လေးတွေ ကို အစားထိုးအသုံးပြုခြင်းက Circuit ကိုပိုမိုပြီး သန့် စေပါတယ်ဗျာ့။", stock:3 ,sku: "ECR - 000953"},
+      { id: 25, name: " 0.91 inch Blue OLED", price:11500 , image: "images/0.91 inch Blue OLED.png", category: "Component", description: "ကိုယ့် ရဲ့ project မှာ0.91 inch Blue OLED  ကိုသုံးပြီး mini computer လိုမျိုးပြုလုပ်လိုပါသလား။ဒါမှမဟုတ် microcontroller များတွင် data display, menu system, sensor reading နှင့် small interface project များအတွက် ကျယ်ပြန့်စွာ အသုံးပြုလိုပါသလား ဒီ display module ကသင့်project မှာသေသပ်လှပနေစေမှာအမှန်ပဲ့နော်။", stock:3 ,sku: "ECR - 000954"},
+      { id: 26, name: "555 Timer IC", price:750 , image: "images/555 Timer IC.png", category: "IC", description: "555 Timer IC ကို timing, delay, pulse generation နှင့် oscillator circuit တွေမှာ အသုံးများသော IC တစ်ခုဖြစ်ပါတယ်။ LED blink, PWM control, tone generator နှင့် digital timing applications များတွင်လည်း ကျယ်ပြန့်စွာ အသုံးပြုနိုင်ပါသည်ခင်‌ဗျား", stock:10 ,sku: "ECR - 000955"},
+      { id: 27, name: "Arduino Nano Board", price:22000 , image: "images/Arduino Nano Board.png", category: "Board", description: "Arduino Nano Board သည် ATmega328P microcontroller ကိုအခြေခံထားသော compact development board တစ်ခုဖြစ်ပြီး 32KB Flash memory (storage) နှင့် 5V operating voltage တွင် အလုပ်လုပ်ပါတယ်။ small size ဖြစ်သောကြောင့် embedded system, sensor project နှင့် portable electronics များတွင် ကျယ်ပြန့်စွာ အသုံးပြုနိုင်ပါသည်ခင်ဗျား။", stock:0 ,sku: "ECR - 000956"},
+      { id: 28, name: "MFRC-522 RFID Module", price:6200 , image: "images/MFRC-522 RFID Module.png", category: "Sensor", description: "MFRC-522 RFID Module သည် 13.56MHz RFID card/tag များကို ဖတ်ရှုနိုင်သော module တစ်ခုဖြစ်ပြီး SPI communication ဖြင့် Arduino နှင့်ချိတ်ဆက်ကာ access control, attendance system နှင့် security project များတွင် အသုံးပြုနိုင်ပါသည်။ 3.3V voltage ဖြင့် အလုပ်လုပ်ပါသည်။5V ပေးမိပါက ပျက်စီးသွားနိုင်ပါသည်ခင်ဗျား။", stock:0 ,sku: "ECR - 000957"},
+      { id: 29, name: "AS608 Optical Fingerprint Sensor Module", price:68000 , image: "images/AS608OpticalFingerprintSensorModule_3.png", category: "Sensor", description: "AS608 Optical Fingerprint Sensor Module သည် လက်ဗွေများကို Scan လုပ်ပြီး စစ်ဆေးနိုင်သော biometric module တစ်ခုဖြစ်ပါတယ်။ UART (Serial) communication ဖြင့် Arduino နှင့်ချိတ်ဆက်အသုံးပြုနိုင်ပါသည်။ 3.3V–5V operating voltage ဖြင့် အလုပ်လုပ်ပြီး fingerprint templates များကို internal storage ထဲတွင် သိမ်းဆည်းနိုင်သောကြောင့် security နှင့် access control system များတွင် အသုံးပြုနိုင်ပါသည်ခင်ဗျား။", stock:0 ,sku: "ECR - 000958"},                     
+      { id: 30, name: "Atmega328P-PU microcontroller", price:24000 , image: "images/Atmega328P-PU microcontroller.png", category: "IC", description: "ATmega328P-PU သည် 32KB Flash, 2KB SRAM နှင့် 1KB EEPROM ပါဝင်ပြီး 1.8V–5.5V ဖြင့် အလုပ်လုပ်သော microcontroller ဖြစ်ပါသည်။ ကိုယ်ပိုင် Arduino UNO board တည်ဆောက်ခြင်သူများအတွက်အဆင်ပြေနိုင်မည့် IC တစ်ခုဖြစ်ပါသည်ခင်ဗျား။", stock:0 ,sku: "ECR - 000959"},
+      { id: 31, name: "Type-C charging Module", price:1500 , image: "images/Type C charging.png", category: "Power", description: "Type-C Charging Module သည် USB Type-C မှတစ်ဆင့် ဘက်ထရီများကို အားသွင်းပေးနိုင်သော module တစ်ခုဖြစ်ပြီး 5V input ဖြင့် lithium battery charging circuit များတွင် အသုံးပြုနိုင်ပါသည်။ compact size ဖြစ်ပြီး portable electronics နှင့် DIY power supply project များတွင် အဆင်ပြေစွာ အသုံးပြုနိုင်ပါသည်။", stock:10,sku: "ECR - 000960" },
+      { id: 32, name: "3V Active Buzzer", price:1350 , image: "images/3V buzzer.png", category: "Component", description: "3V Buzzer သည် အသံထုတ်ပေးနိုင်သော component တစ်ခုဖြစ်ပြီး 3V voltage ဖြင့် အလုပ်လုပ်ကာ alert, notification နှင့် simple sound output project များတွင် အသုံးပြုနိုင်ပါသည်။ Arduino နှင့်ချိတ်ဆက်၍ beep sound, alarm system နှင့် indication circuit များတွင် လွယ်ကူစွာ အသုံးပြုနိုင်ပါသည်။", stock:5,sku: "ECR - 000961" },
+      { id: 33, name: "5V Active Buzzer", price:1650 , image: "images/5V active Buzzer.png", category: "Component", description: "5V Active Buzzer သည် internal oscillator ပါဝင်သောကြောင့် 5V supply ပေးလိုက်သည်နှင့် အသံထွက်နိုင်သော component တစ်ခုဖြစ်ပြီး alarm, alert နှင့် notification circuit များတွင် အသုံးပြုနိုင်ပါသည်။ Arduino နှင့်ချိတ်ဆက်ရာတွင် code မလိုအပ်ဘဲ HIGH signal ပေးရုံဖြင့် beep sound ထုတ်နိုင်ပါသည်။", stock:5 ,sku: "ECR - 000962"},
+      { id: 34, name: "12V Active Buzzer", price:1650 , image: "images/12V Active Buzzer.png", category: "Component", description: "12V Active Buzzer သည် internal oscillator ပါဝင်သောကြောင့် 12V supply ပေးလိုက်သည်နှင့် အသံထွက်နိုင်သော component တစ်ခုဖြစ်ပြီး alarm, warning နှင့် industrial notification system များတွင် အသုံးပြုနိုင်ပါသည်။control circuit များနှင့် ချိတ်ဆက်၍ relay သို့မဟုတ် transistor မှတစ်ဆင့် လွယ်ကူစွာ အသုံးပြုနိုင်ပါသည်။", stock:5,sku: "ECR - 000963" },
+      { id: 35, name: "12V Relay", price:2500 , image: "images/12V Relay.png", category: "Switch", description: "12V Relay သည် low voltage control signal ဖြင့် high voltage/current load များကို switch လုပ်နိုင်သော electromagnetic switch တစ်ခုဖြစ်ပြီး 12V coil voltage ဖြင့် အလုပ်လုပ်ပါသည်။ Arduino နှင့်ချိတ်ဆက်၍ light, motor နှင့် home automation system များတွင် လုံခြုံစွာ control လုပ်နိုင်ပါသည်။", stock:3 ,sku: "ECR - 000964"},
+      { id: 36, name: "7 Segment Display 1 Digit", price:1600 , image: "images/7 Segment Display 1 Digit.png", category: "Display", description: "7 Segment Display (1 Digit) သည် 0 မှ 9 အထိ digit များကို segment 7 ခုဖြင့် ပြသပေးနိုင်သော display တစ်ခုဖြစ်ပြီး digital counter နှင့် number display project များတွင် အသုံးပြုနိုင်ပါသည်။ Arduino (သို့မဟုတ်)တခြားသော Microcontroller များနှင့်  ချိတ်ဆက်ရာ၍ segment တစ်ခုချင်းစီကို control လုပ်ကာ ", stock:5,sku: "ECR - 000965" },
+      { id: 37, name: "9V Battery", price:7500 , image: "images/9V battery.png", category: "Power", description: "9V Battery သည် portable power source တစ်ခုဖြစ်ပြီး 9V output voltage ပေးနိုင်ကာ small electronic circuit နှင့် Arduino project များတွင် power supply အဖြစ် အသုံးပြုနိုင်ပါသည်။ lightweight ဖြစ်ပြီး testing, prototype နှင့် mobile electronics project များတွင် အဆင်ပြေစွာ အသုံးပြုနိုင်ပါသည်။", stock:3 ,sku: "ECR - 000966"},
+      { id: 38, name: "I2C Module for 16x2 LCD Display", price:4500 , image: "images/I2C Module for 16x2 LCD.png", category: "Module", description: "I2C Module for 16x2 LCD သည် LCD ကို I2C communication ဖြင့် control လုပ်နိုင်စေရန် အသုံးပြုသော module တစ်ခုဖြစ်ပြီး SDA နှင့် SCL pin နှစ်ခုပဲ အသုံးပြုရသဖြင့် wiring ကိုလျှော့ချနိုင်ပါသည်။Arduino နှင့်ချိတ်ဆက်ရာတွင် pin usage ကိုလျှော့ပေးပြီး LCD display project များတွင် အဆင်ပြေစွာ အသုံးပြုနိုင်ပါသည်။", stock:8 ,sku: "ECR - 000967"},
+      { id: 39, name: "Breadboard (or) Project Board", price:15900 , image: "images/Project Board.png", category: "Board", description: "Project Board သည် electronic component များကို စမ်းသပ်တည်ဆောက်ရန် အသုံးပြုသော board တစ်ခုဖြစ်ပြီး soldering သို့မဟုတ် temporary connection များဖြင့် circuit များကို အလွယ်တကူ ပြုလုပ်နိုင်ပါသည်။prototype design နှင့် Arduino project များတွင် circuit ကို စမ်းသပ်ရန်နှင့် ပြင်ဆင်ရန် အဆင်ပြေစွာ အသုံးပြုနိုင်ပါသည်။", stock:10 ,sku: "ECR - 000968"},
+      { id: 40, name: "Color Green LED(5mm)", price: 150, image: "images/Green Color LED.png", category: "LED", description: "ကိုယ့် ရဲ့ Circuit မှာ Power (on/off) indicator အဖြစ်သုံးလို့ အဆင်ပြေစေမဲ့ Green Color LED လေးပါခင်ဗျာ့။  ", stock: 100 ,sku: "ECR - 000969"},
+      { id: 41, name: "30x70mm Double-Sided PCB Prototype Board", price: 1800, image: "images/30x70mm Pcb.png", category: "Board", description: "Electronic Project မျိုးစုံ တည်ဆောက်ရာတွင် Component များကို အလွယ်တကူ စမ်းသပ်တပ်ဆင်နိုင်ပြီး Circuit Prototype များ ပြုလုပ်ရန် အထူးသင့်တော်သော Double-Sided PCB Prototype Board လေးပါခင်ဗျာ့။", stock: 10,sku: "ECR - 000970" },
+      { id: 42, name: "LM3914 IC", price: 3500, image: "images/LM3914 IC.png", category: "IC", description: "Voltage Level များကို LED Bar Graph သို့မဟုတ် Dot Display အဖြစ် အလွယ်တကူ ပြသနိုင်စေသော LM3914 Driver IC ဖြစ်ပြီး Battery Level Indicator၊ Audio VU Meter နှင့် Measurement Projects များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 3,sku: "ECR - 000971" },
+      { id: 43, name: "RS-775 High RPM & High Torque 12V DC Motor", price: 53000, image: "images/RS-775 High RPM and High Torque 12V  DC.png", category: "Motor", description: "High Speed နှင့် High Torque ကို တစ်ပြိုင်နက် ပေးစွမ်းနိုင်သော RS-775 12V DC Motor ဖြစ်ပြီး DIY Project များ၊ Drill၊ Cutting Machine၊ Mini Lathe နှင့် Robotics Project များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 0,sku: "ECR - 000972" },
+      { id: 44, name: "0.96 Inch OLED Display", price: 17400, image: "images/0.96 oled display.png", category: "Display", description: "128x64 Resolution ဖြင့် စာသား၊ ပုံများနှင့် Sensor Data များကို ကြည်လင်ပြတ်သားစွာ ဖော်ပြနိုင်သော 0.96 Inch OLED Display ဖြစ်ပြီး Arduino, ESP32, ESP8266 နှင့် Raspberry Pi Project များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 0 ,sku: "ECR - 000973"},
+      { id: 45, name: "9V Battery Clip with Crocodile Clips", price: 1800, image: "images/9V_Battery_Clip_Crocodile.png", category: "Power", description: "9V Battery ကို Circuit များနှင့် အလွယ်တကူ ချိတ်ဆက်အသုံးပြုနိုင်ရန် ပြုလုပ်ထားသော Battery Clip with Crocodile Clips ဖြစ်ပြီး Electronics Testing၊ DIY Projects နှင့် Educational Experiments များအတွက် အသုံးဝင်သော Accessory လေးဖြစ်ပါသည်။", stock: 4 ,sku: "ECR - 000974"},
+      { id: 46, name: "13.56MHz MIFARE RFID Card (0.8mm)", price: 2850, image: "images/13.56M Hz Mifare card 0.8mm.png", category: "Accessory", description: "13.56MHz Frequency ဖြင့် အလုပ်လုပ်သော MIFARE RFID Card ဖြစ်ပြီး RFID Access Control, Attendance System, Smart Card နှင့် Security Projects များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 0 ,sku: "ECR - 000975"},
+      { id: 47, name: "5mm GL5549 LDR", price: 800, image: "images/5mm (GL5549) LDR.png", category: "Sensor", description: "အလင်းရောင်ပမာဏကို ခံစားနိုင်သော 5mm GL5549 LDR Sensor ဖြစ်ပြီး Automatic Light Control, Smart Lighting, Light Detection နှင့် Arduino Project များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။ [Light Resistance: 100 – 200KΩ]  [Dark Resistance: 10MΩ]  [RiseTime: 20ms]  [Fall Time: 30ms]", stock: 10,sku: "ECR - 000976" },
+      { id: 48, name: "ESP32 Development Board (USB-C)", price: 50250, image: "images/ESP32 Development Board( USB-C).png", category: "Board", description: "Wi-Fi နှင့် Bluetooth Built-in ပါဝင်သော ESP32 Development Board ဖြစ်ပြီး IoT, Smart Home, Robotics နှင့် Wireless Communication Project များအတွက် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။ USB-C Port ပါဝင်သဖြင့် Programming နှင့် Power Supply ချိတ်ဆက်ရာတွင် ပိုမိုအဆင်ပြေစေပါသည်။", stock: 0,sku: "ECR - 000977" },
+      { id: 49, name: "Battery Case (CR2032)", price: 1050, image: "images/Battery Case (CR2032).png", category: "Power", description: "CR2032 Battery ကို အလွယ်တကူ ထည့်သွင်းအသုံးပြုနိုင်သော Compact Battery Holder လေးဖြစ်ပြီး Electronics Project, Backup Power Circuit နှင့် Portable Device များအတွက် အသုံးဝင်သော Accessory တစ်ခုဖြစ်ပါသည်။", stock: 10,sku: "ECR - 000978" },
+      { id: 50, name: "5mm Photo Diode", price: 500, image: "images/Photo Diode 5mm.png", category: "Sensor", description: "အလင်းရောင်နှင့် Infrared Signal များကို လျင်မြန်စွာ တုံ့ပြန်နိုင်သော 5mm Photo Diode လေးဖြစ်ပြီး Object Detection, Light Sensing, IR Communication နှင့် DIY Electronics Project များအတွက် အသုံးများသော Sensor တစ်ခုဖြစ်ပါသည်။", stock: 10,sku: "ECR - 000979" },
+      { id: 51, name: "NRF24L01 2.4GHz Wireless Module", price: 7500, image: "images/NRF24L01 with 2.4 GHz wireless module .png", category: "Wireless Module", description: "ပါဝါသုံးစွဲမှုနည်းပြီး ယုံကြည်စိတ်ချရသော Wireless Data Communication ကို ပံ့ပိုးပေးနိုင်သည့် NRF24L01 2.4GHz Module လေးဖြစ်ပြီး Remote Control, Sensor Network, Home Automation နှင့် Robotics Project များအတွက် အသုံးများသော Module တစ်ခုဖြစ်ပါသည်။", stock: 6,sku: "ECR - 000980" },
+      { id: 52, name: "5V 1 Channel Relay Module", price: 5900, image: "images/5V 1 Channel Relay Module.png", category: "Relay Module", description: "5V Signal ဖြင့် AC နှင့် DC Device များကို အလွယ်တကူ On/Off Control ပြုလုပ်နိုင်သော 1 Channel Relay Module ဖြစ်ပြီး Arduino, ESP32, Smart Home နှင့် Automation Project များအတွက် အထူးသင့်တော်ပါသည်။", stock: 4 ,sku: "ECR - 000981" },
+      { id: 53, name: "Alligator Clip 35mm", price: 750, image: "images/Alligator clip 35mm.png", category: "Power", description: "Electronic Circuit များနှင့် Testing Project များတွင် Wire များကို အလွယ်တကူ ချိတ်ဆက်အသုံးပြုနိုင်သော 3mm Alligator Clip ဖြစ်ပြီး DIY Project နှင့် Laboratory အသုံးပြုမှုများအတွက် အထူးသင့်တော်ပါသည်။", stock: 20 ,sku: "ECR - 000982" },
+      { id: 54, name: "Mini Water Pump 5V", price: 6000, image: "images/Mini water pump 5V.png", category: "Motor", description: "5V Power ဖြင့် အလုပ်လုပ်နိုင်သော Mini Water Pump ဖြစ်ပြီး Automatic Watering System, Aquarium, DIY Project နှင့် Arduino, ESP32 Control Project များအတွက် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 4 ,sku: "ECR - 000983" },
+      { id: 55, name: "Jumper Cap Black Color", price: 300, image: "images/Jumper Cap Black Color.png", category: "Accessories", description: "Pin Header များကို အလွယ်တကူ ချိတ်ဆက်၍ Setting နှင့် Configuration ပြောင်းလဲနိုင်သော Jumper Cap ဖြစ်ပြီး Development Board, Hard Disk နှင့် Electronics Project များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 20,sku: "ECR - 000984"  },
+      { id: 56, name: "Jumper Cap Blue Color", price: 300, image: "images/Jumper Cap Blue Color.png", category: "Accessories", description: "Pin Header များကို အလွယ်တကူ ချိတ်ဆက်၍ Setting နှင့် Configuration ပြောင်းလဲနိုင်သော Jumper Cap ဖြစ်ပြီး Development Board, Hard Disk နှင့် Electronics Project များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 20 ,sku: "ECR - 000985" },
+      { id: 57, name: "Jumper Cap Red Color", price: 300, image: "images/Jumper Cap Red Color.png", category: "Accessories", description: "Pin Header များကို အလွယ်တကူ ချိတ်ဆက်၍ Setting နှင့် Configuration ပြောင်းလဲနိုင်သော Jumper Cap ဖြစ်ပြီး Development Board, Hard Disk နှင့် Electronics Project များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 20 ,sku: "ECR - 000986" },
+      { id: 58, name: "Jumper Cap Yellow Color", price: 300, image: "images/Jumper Cap Yellow Color.png", category: "Accessories", description: "Pin Header များကို အလွယ်တကူ ချိတ်ဆက်၍ Setting နှင့် Configuration ပြောင်းလဲနိုင်သော Jumper Cap ဖြစ်ပြီး Development Board, Hard Disk နှင့် Electronics Project များတွင် အသုံးပြုရန် အထူးသင့်တော်ပါသည်။", stock: 20 ,sku: "ECR - 000987" }
 
 
     ];
@@ -1008,6 +993,7 @@ body {
     let cart = JSON.parse(localStorage.getItem("cart")) || {};
     let currentCategory = "All";
     let isHomeView = true; 
+    let generatedVoucherCanvas = null; // To hold canvas reference for download
 
     /* INITIALIZATION */
     window.onload = function() {
@@ -1022,7 +1008,6 @@ body {
       let starDiscountHtml = "";
       let cardGlowClass = "";
 
-      // Discount ရှိလျှင် RGB Star နှင့် Border Glow ပေးရန်
       if (item.discountPercent) {
         cardGlowClass = "discount-glow";
         starDiscountHtml = `
@@ -1033,7 +1018,6 @@ body {
         `;
       }
       
-      // Multi-value item မဟုတ်သော ပုံမှန်ပစ္စည်းများအတွက် Badge ပြသခြင်း
       if (!item.values) {
         if (item.stock === 0) {
           badgeHtml = `<div class="badge out">OUT OF STOCK</div>`;
@@ -1049,9 +1033,11 @@ body {
       let displayPriceHtml = "";
       let isButtonDisabled = item.stock === 0; 
       let buttonText = item.stock === 0 ? "Out" : "Buy +";
-
-      // Price Display Logic (Discount သမားနှင့် ပုံမှန်သမား ခွဲခြားရန်)
+      
+      // SKU Display Logic
+      let skuHtml = "";
       if (!item.values) {
+        skuHtml = `<div class="sku-text" id="sku-display-${item.id}">SKU: ${item.sku || 'N/A'}</div>`;
         if (item.oldPrice) {
           displayPriceHtml = `
             <div class="price-container">
@@ -1064,9 +1050,9 @@ body {
         }
       }
 
-      // Resistor / Capacitor ကဲ့သို့ Dropdown ပါသော ပစ္စည်းများအတွက် Logic
-     if (item.values && item.values.length > 0) {
+      if (item.values && item.values.length > 0) {
         let displayPrice = item.values[0].price; 
+        skuHtml = `<div class="sku-text" id="sku-display-${item.id}">SKU: ${item.values[0].sku || 'N/A'}</div>`;
         displayPriceHtml = `<div class="price" id="price-display-${item.id}">${displayPrice.toLocaleString()} Ks</div>`;
         
         const firstVal = item.values[0];
@@ -1084,8 +1070,7 @@ body {
           buttonText = "Buy +";
         }
 
-        // Dropdown HTML Option များတည်ဆောက်ခြင်း
-       selectHtml = `
+        selectHtml = `
           <div class="custom-select-wrapper">
             <select id="select-${item.id}" 
                     onchange="updateCardPrice(${item.id}); this.blur();" 
@@ -1115,6 +1100,7 @@ body {
             </div>
             <div class="card-body">
               <h3>${item.name}</h3>
+              ${skuHtml}
               ${selectHtml} 
               <div class="price-row">
                 ${displayPriceHtml}
@@ -1127,11 +1113,11 @@ body {
       `;
     }
 
-    // Dropdown value ရွေးချယ်လိုက်သည့်အခါ ဈေးနှုန်း၊ Badge နှင့် ဝယ်ယူနိုင်စွမ်း (Button status) ကို ချက်ချင်းပြောင်းပေးမည့် Function
     function updateCardPrice(id) {
       const item = products.find(p => p.id === id);
       const selectEl = document.getElementById(`select-${id}`);
       const priceDisplay = document.getElementById(`price-display-${id}`);
+      const skuDisplay = document.getElementById(`sku-display-${id}`);
       const badgeEl = document.getElementById(`badge-${id}`);
       const btnEl = document.getElementById(`btn-add-${id}`);
 
@@ -1139,10 +1125,9 @@ body {
         const selectedIdx = selectEl.value;
         const selectedValue = item.values[selectedIdx];
         
-        // ဈေးနှုန်းပြောင်းလဲခြင်း
         priceDisplay.innerText = selectedValue.price.toLocaleString() + " Ks";
+        if(skuDisplay) skuDisplay.innerText = "SKU: " + (selectedValue.sku || 'N/A');
         
-        // Stock status အလိုက် Badge နှင့် Button အခြေအနေကို update လုပ်ခြင်း
         if (selectedValue.stock === 0) {
           if(badgeEl) {
             badgeEl.className = "badge out";
@@ -1211,7 +1196,6 @@ body {
       });
     }
 
-    /* VIEW FULL CATEGORY */
     function viewCategory(cat) {
         isHomeView = false;
         setCategory(cat); 
@@ -1220,7 +1204,6 @@ body {
         renderProducts(products.filter(p => p.category === cat));
     }
 
-    /* RESET TO HOME */
     function resetToHome() {
         renderHomePageSections();
         document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
@@ -1228,7 +1211,6 @@ body {
         document.getElementById("searchInput").value = "";
     }
 
-    /* RENDER CATEGORY BUTTONS */
     function renderCategories() {
       const uniqueCategories = ["All", ...new Set(products.map(p => p.category))];
       const container = document.getElementById("categoryContainer");
@@ -1240,7 +1222,6 @@ body {
       `).join('');
     }
 
-    /* CATEGORY FILTER FUNCTION */
     function setCategory(cat) {
       currentCategory = cat;
       isHomeView = false; 
@@ -1255,7 +1236,6 @@ body {
       filterProducts(); 
     }
 
-    /* MAIN FILTER & RENDER FUNCTION */
     function filterProducts() {
       const searchText = document.getElementById("searchInput").value.toLowerCase().trim();
       
@@ -1280,7 +1260,6 @@ body {
       renderProducts(filtered);
     }
 
-    /* RENDER PRODUCTS CARD */
     function renderProducts(list) {
       const container = document.getElementById("products");
       container.innerHTML = "";
@@ -1295,7 +1274,6 @@ body {
       });
     }
 
-    /* ADD TO CART LOGIC */
     function addMultiToCart(id) {
       const product = products.find(p => p.id === id);
       if (!product) return;
@@ -1307,13 +1285,12 @@ body {
 
       const selectEl = document.getElementById(`select-${id}`);
       
-      // Multi-value item ဖြစ်လျှင်
       if (selectEl && product.values) {
         const selectedIdx = selectEl.value;
         const targetValue = product.values[selectedIdx];
         selectedLabel = targetValue.label;
         currentPrice = targetValue.price;
-        availableStock = targetValue.stock; // ၎င်း value ၏ သီးသန့် stock ကိုယူရန်
+        availableStock = targetValue.stock; 
         cartKey = `${id}_${selectedLabel}`; 
       }
 
@@ -1333,7 +1310,6 @@ body {
       }
     }
 
-    /* UPDATE QUANTITY IN CART */
     function updateQty(cartKey, change) {
       if (!cart[cartKey]) return;
       let newQty = cart[cartKey] + change;
@@ -1344,7 +1320,6 @@ body {
 
       let availableStock = product.stock;
       
-      // Multi-value သမားဆိုလျှင် ၎င်းသတ်မှတ် value ၏ stock အတိုင်းပြန်စစ်ရန်
       if (parts[1] && product.values) {
         const foundValue = product.values.find(v => v.label === parts[1]);
         if (foundValue) availableStock = foundValue.stock;
@@ -1369,7 +1344,6 @@ body {
       openCart(); 
     }
 
-    /* REMOVE FROM CART */
     function removeFromCart(cartKey) {
       if (confirm("Remove this item?")) {
         delete cart[cartKey];
@@ -1397,7 +1371,6 @@ body {
       }
     }
 
-    /* PRODUCT DETAIL MODAL LOGIC */
     function openProductModal(id) {
       const p = products.find(x => x.id === id);
       document.getElementById("mImg").src = p.image;
@@ -1406,13 +1379,14 @@ body {
       
       const btn = document.getElementById("mAddBtn");
       const stockEl = document.getElementById("mStock");
+      const skuEl = document.getElementById("mSku");
 
-      // Multi-value item ဖြစ်ပါက လက်ရှိ select လုပ်ထားသော value အလိုက် Modal အချက်အလက်ကို ပြောင်းလဲပေးရန်
       if (p.values && p.values.length > 0) {
         const selectEl = document.getElementById(`select-${id}`);
         const currentIdx = selectEl ? selectEl.value : 0;
         const currentVal = p.values[currentIdx];
 
+        skuEl.innerText = "SKU: " + (currentVal.sku || 'N/A');
         document.getElementById("mPrice").innerText = currentVal.price.toLocaleString() + " Ks (" + currentVal.label + ")";
         stockEl.innerText = `Available Stock: ${currentVal.stock}`;
         stockEl.style.display = "block";
@@ -1421,7 +1395,7 @@ body {
         btn.disabled = (currentVal.stock === 0);
         btn.innerText = (currentVal.stock === 0) ? "Out of Stock" : "Add To Cart";
       } else {
-        // ပုံမှန် single item များအတွက် (Discount ဈေးနှုန်းကိုပါ စစ်ဆေးပြသရန်)
+        skuEl.innerText = "SKU: " + (p.sku || 'N/A');
         if (p.oldPrice) {
           document.getElementById("mPrice").innerHTML = `<span style="text-decoration:line-through; color:var(--danger); font-size:0.85em; margin-right:10px;">${p.oldPrice.toLocaleString()} Ks</span> <span style="color:#2563eb;">${p.price.toLocaleString()} Ks</span>`;
         } else {
@@ -1438,7 +1412,6 @@ body {
       document.getElementById("productModal").classList.add("active");
     }
 
-    /* CART MODAL OPEN & RENDER */
     function openCart() {
       const container = document.getElementById("cartItems");
       container.innerHTML = "";
@@ -1456,9 +1429,13 @@ body {
           const qty = cart[cartKey];
           
           let price = p.price;
+          let skuStr = p.sku || 'N/A';
           if (parts[1] && p.values) {
             const foundValue = p.values.find(v => v.label === parts[1]);
-            if (foundValue) price = foundValue.price;
+            if (foundValue) {
+              price = foundValue.price;
+              skuStr = foundValue.sku || 'N/A';
+            }
           }
 
           const sub = price * qty;
@@ -1468,6 +1445,7 @@ body {
             <div class="cart-item">
               <div class="cart-item-info">
                 <h4>${p.name}${valueLabel}</h4>
+                <div style="color:var(--success); font-size:0.8rem; font-weight:600;">SKU: ${skuStr}</div>
                 <small>${price.toLocaleString()} Ks / each</small>
               </div>
               
@@ -1493,6 +1471,7 @@ body {
       
       document.getElementById("cartTotal").innerText = total.toLocaleString();
       document.getElementById("qrSection").style.display = "none"; 
+      document.getElementById("voucherSection").style.display = "none"; 
       document.getElementById("cartModal").classList.add("active");
     }
 
@@ -1500,14 +1479,9 @@ body {
       document.getElementById(id).classList.remove("active");
     }
 
-    /* GENERATE QR CODE */
-    function generateOrderQR() {
-      if (Object.keys(cart).length === 0) {
-        alert("Cart ထဲမှာ ပစ္စည်း မရှိသေးပါ");
-        return;
-      }
-
-      const cartItemsArray = Object.keys(cart).map(cartKey => {
+    /* GET CART OBJECT ARRAY WITH FULL DETAILS */
+    function getFullCartItemsDetails() {
+      return Object.keys(cart).map(cartKey => {
         const parts = cartKey.split('_');
         const id = parseInt(parts[0]);
         const valueLabel = parts[1] ? ` (${parts[1]})` : "";
@@ -1515,19 +1489,189 @@ body {
         const p = products.find(x => x.id == id);
         
         let price = p.price;
+        let skuStr = p.sku || 'N/A';
         if (parts[1] && p.values) {
           const foundValue = p.values.find(v => v.label === parts[1]);
-          if (foundValue) price = foundValue.price;
+          if (foundValue) {
+            price = foundValue.price;
+            skuStr = foundValue.sku || 'N/A';
+          }
         }
 
         return {
           name: p.name + valueLabel, 
+          sku: skuStr,
           qty: cart[cartKey],
           price: price,
           sub: price * cart[cartKey]
         };
       });
+    }
 
+    /* NEW FUNCTION: GENERATE VOUCHER (PREVIEW ON CANVAS) */
+    function generateVoucherImage() {
+      if (Object.keys(cart).length === 0) {
+        alert("Cart ထဲမှာ ပစ္စည်း မရှိသေးပါ");
+        return;
+      }
+      
+      document.getElementById("qrSection").style.display = "none";
+      const voucherItems = getFullCartItemsDetails();
+      
+      // Dynamic height canvas drawing
+      const canvas = document.getElementById("voucherCanvasPreview");
+      const ctx = canvas.getContext('2d');
+      
+      const itemRowHeight = 45;
+      const baseHeight = 360; 
+      canvas.width = 550;
+      canvas.height = baseHeight + (voucherItems.length * itemRowHeight);
+      
+      // Background Clean White
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Outer border box
+      ctx.strokeStyle = "#0f172a";
+      ctx.lineWidth = 6;
+      ctx.strokeRect(3, 3, canvas.width - 6, canvas.height - 6);
+      
+      // Header Shop Title
+      ctx.fillStyle = "#0f172a";
+      ctx.font = "bold 26px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText("DIGITAL NEST", canvas.width / 2, 50);
+      
+      ctx.font = "italic 13px Arial";
+      ctx.fillStyle = "#64748b";
+      ctx.fillText("Electronics Shop Pro & DIY Components", canvas.width / 2, 72);
+      
+      // Divider Line
+      ctx.strokeStyle = "#e2e8f0";
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(20, 85); ctx.lineTo(canvas.width - 20, 85); ctx.stroke();
+      
+      // Shop metadata details
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#334155";
+      ctx.font = "12px Arial";
+      ctx.fillText("📍 ဆိုင်လိပ်စာ: မြိတ်မြို့နယ်၊ ချောင်းကူးငယ်ရပ်၊ တနင်္သာရီတိုင်းဒေသကြီး။", 25, 110);
+      ctx.fillText("📞 ဖုန်းနံပါတ်: 09-402868817, 09-697932369", 25, 130);
+      
+      // Date info
+      const d = new Date();
+      const dateString = `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}  ${d.getHours()}:${d.getMinutes()}`;
+      ctx.textAlign = "right";
+      ctx.fillText(`Date: ${dateString}`, canvas.width - 25, 130);
+      
+      // Table Header definitions
+      ctx.fillStyle = "#f1f5f9";
+      ctx.fillRect(20, 155, canvas.width - 40, 32);
+      ctx.strokeStyle = "#cbd5e1";
+      ctx.strokeRect(20, 155, canvas.width - 40, 32);
+      
+      ctx.fillStyle = "#0f172a";
+      ctx.font = "bold 12px Arial";
+      ctx.textAlign = "left";
+      ctx.fillText("ပစ္စည်းအမည် / SKU", 30, 175);
+      ctx.textAlign = "center";
+      ctx.fillText("နှုန်း", 310, 175);
+      ctx.fillText("အရေအတွက်", 400, 175);
+      ctx.textAlign = "right";
+      ctx.fillText("စုစုပေါင်း", canvas.width - 30, 175);
+      
+      let currentY = 205;
+      let grandTotalSum = 0;
+      
+      // Rendering voucher items lines loop
+      voucherItems.forEach((item) => {
+        ctx.fillStyle = "#0f172a";
+        ctx.font = "12px Arial";
+        ctx.textAlign = "left";
+        
+        // Truncate name if too long
+        let itemNameStr = item.name;
+        if(itemNameStr.length > 34) itemNameStr = itemNameStr.substring(0, 32) + "...";
+        ctx.fillText(itemNameStr, 30, currentY);
+        
+        // SKU Subtext line in specialized safe formatting green
+        ctx.fillStyle = "#10b981";
+        ctx.font = "bold 10px Arial";
+        ctx.fillText(`[SKU: ${item.sku}]`, 30, currentY + 14);
+        
+        ctx.fillStyle = "#334155";
+        ctx.font = "12px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText(`${item.price.toLocaleString()}`, 310, currentY + 5);
+        ctx.fillText(`${item.qty}`, 400, currentY + 5);
+        
+        ctx.textAlign = "right";
+        ctx.fillStyle = "#0f172a";
+        ctx.fillText(`${item.sub.toLocaleString()} Ks`, canvas.width - 30, currentY + 5);
+        
+        grandTotalSum += item.sub;
+        
+        // Internal loop row line separator
+        ctx.strokeStyle = "#f1f5f9";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(20, currentY + 24);
+        ctx.lineTo(canvas.width - 20, currentY + 24);
+        ctx.stroke();
+        
+        currentY += itemRowHeight;
+      });
+      
+      // Calculations row block border lines divider
+      currentY += 10;
+      ctx.strokeStyle = "#0f172a";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(20, currentY); ctx.lineTo(canvas.width - 20, currentY); ctx.stroke();
+      
+      currentY += 25;
+      ctx.fillStyle = "#0f172a";
+      ctx.font = "bold 15px Arial";
+      ctx.textAlign = "left";
+      ctx.fillText("သင့်ငွေစုစုပေါင်း (Grand Total):", 30, currentY);
+      
+      ctx.textAlign = "right";
+      ctx.font = "bold 16px Arial";
+      ctx.fillStyle = "#2563eb";
+      ctx.fillText(`${grandTotalSum.toLocaleString()} Ks`, canvas.width - 30, currentY);
+      
+      // Footer thank you greetings notes
+      currentY += 45;
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#475569";
+      ctx.font = "italic 12px Arial";
+      ctx.fillText("ဝယ်ယူအားပေးမှုကို အထူးကျေးဇူးတင်ရှိပါသည်ခင်ဗျား။", canvas.width / 2, currentY);
+      ctx.fillText("မမှန်ကန်မှုတစ်စုံတစ်ရာရှိပါက ဆိုင်သို့ ချက်ချင်းပြန်လည်ဆက်သွယ်ပေးပါရန်။", canvas.width / 2, currentY + 18);
+      
+      generatedVoucherCanvas = canvas;
+      document.getElementById("voucherSection").style.display = "flex";
+      
+      // Auto Scroll smoothly to view voucher section preview directly
+      document.getElementById("voucherSection").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* NEW FUNCTION: DOWNLOAD GENERATED VOUCHER IMAGE */
+    function downloadVoucher_Fixed() {
+      if (!generatedVoucherCanvas) {
+         alert("ကျေးဇူးပြု၍ Voucher အရင်ဆောက်ပေးပါရန်။");
+         return;
+      }
+      triggerMobileDownload(generatedVoucherCanvas, 'DigitalNest_Voucher.png');
+    }
+
+    /* GENERATE QR CODE WITH SKU, PRICE, AND QTY */
+    function generateOrderQR() {
+      if (Object.keys(cart).length === 0) {
+        alert("Cart ထဲမှာ ပစ္စည်း မရှိသေးပါ");
+        return;
+      }
+      
+      document.getElementById("voucherSection").style.display = "none";
+      const cartItemsArray = getFullCartItemsDetails();
       const totalItems = cartItemsArray.length; 
       let numQRCodes = 1;
       
@@ -1550,10 +1694,11 @@ body {
         let chunkTotal = 0;
         
         chunk.forEach(item => {
-          chunkText += `${item.name} x${item.qty} = ${item.sub}Ks\n`;
+          // Updated string format including item SKU code and price per unit configuration details
+          chunkText += `${item.name}\n[SKU:${item.sku}] (${item.price}Ks) x${item.qty} = ${item.sub}Ks\n-\n`;
           chunkTotal += item.sub;
         });
-        chunkText += `\nSubTotal: ${chunkTotal.toLocaleString()} Ks`;
+        chunkText += `SubTotal: ${chunkTotal.toLocaleString()} Ks`;
         if (index === chunks.length - 1) {
             let grandTotal = cartItemsArray.reduce((sum, item) => sum + item.sub, 0);
             chunkText += `\n(Grand Total: ${grandTotal.toLocaleString()} Ks)`;
@@ -1583,6 +1728,7 @@ body {
       });
 
       document.getElementById("qrSection").style.display = "flex";
+      document.getElementById("qrSection").scrollIntoView({ behavior: 'smooth' });
     }
 
     /* DOWNLOAD QR IMAGES */
@@ -1653,26 +1799,26 @@ body {
                     ctx.drawImage(tempImg, x, y + 35, qrSize, qrSize);
                     loadedImages++;
                     if(loadedImages === totalToLoad) {
-                        triggerMobileDownload(canvas);
+                        triggerMobileDownload(canvas, 'DigitalNest_Order.png');
                     }
                 };
                 tempImg.onerror = function() {
                     loadedImages++;
-                    if(loadedImages === totalToLoad) triggerMobileDownload(canvas);
+                    if(loadedImages === totalToLoad) triggerMobileDownload(canvas, 'DigitalNest_Order.png');
                 };
                 tempImg.src = imgSource;
             } else {
                 loadedImages++;
-                if(loadedImages === totalToLoad) triggerMobileDownload(canvas);
+                if(loadedImages === totalToLoad) triggerMobileDownload(canvas, 'DigitalNest_Order.png');
             }
         });
     }
 
-    function triggerMobileDownload(canvas) {
+    function triggerMobileDownload(canvas, defaultFilename) {
         try {
             const dataUrl = canvas.toDataURL('image/png');
             const link = document.createElement('a');
-            link.download = 'DigitalNest_Order.png';
+            link.download = defaultFilename || 'DigitalNest_Export.png';
             link.href = dataUrl;
             document.body.appendChild(link);
             link.click();
@@ -1699,7 +1845,6 @@ body {
       }
     }
 
-    /* TOAST MESSAGE */
     function showToast(msg) {
       const toast = document.getElementById("toast");
       toast.innerText = msg;
@@ -1715,7 +1860,6 @@ body {
         event.target.classList.remove("active");
       }
     }
-    
   </script>
 </body>
 </html>
